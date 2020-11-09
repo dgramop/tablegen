@@ -28,6 +28,7 @@ public class Drawings extends JPanel{
         frame.validate(); // because you added panel after setVisible was called
         frame.repaint();*/
 		
+		//add URL
 		JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
@@ -44,6 +45,7 @@ public class Drawings extends JPanel{
         frame.repaint(); // because you added panel after setVisible was called
 		
 	}	
+	
 }
 
 class MyRectangleJPanel extends JPanel {
@@ -51,6 +53,27 @@ class MyRectangleJPanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setColor(Color.BLUE);
-        g.fillRect(0, 0, 100, 100);
+        g.fillRect(50, 20, 100, 100);
+        
+        Graphics g2 =  g;
+        //super.paintComponent(g);
+        g2.setColor(Color.red);
+        g2.drawRect(10, 10, 100, 100);   
+    }
+}
+
+class MyCircleJPanel extends JFrame {
+    @Override
+    public void paintComponent(Graphics g) {
+    	Graphics2D g2 = (Graphics2D) g;
+        Shape line = new Line2D.Double(3, 3, 303, 303);
+        Shape rect = new Rectangle(3, 3, 303, 303);
+        Shape circle = new Ellipse2D.Double(100, 100, 100, 100);
+        Shape roundRect = new RoundRectangle2D.Double(20, 20, 250, 250, 5, 25);
+        g2.draw(line);
+        g2.draw(rect);
+        g2.draw(circle);
+        g2.draw(roundRect);
+    	
     }
 }
