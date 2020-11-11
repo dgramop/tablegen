@@ -4,16 +4,16 @@ public class Leg implements TableComponent {
 private double x;
 private double y;
 private double height;
-private double width;
-private double length;
+private static final double width = 1.5;
+private static final double length = 3.5;
 
-public Leg(double x, double y, double h, double w, double l)
+public Leg(double x, double y, double h)
 {
 	this.x = x;
 	this.y = y;
 	height = h;
-	width = w;
-	length = l;
+
+	
 }
 
 public double getX() {
@@ -44,16 +44,8 @@ public double getWidth() {
 	return width;
 }
 
-public void setWidth(double width) {
-	this.width = width;
-}
-
 public double getLength() {
 	return length;
-}
-
-public void setLength(double length) {
-	this.length = length;
 }
 
 public double calculateCubeFoot() {
