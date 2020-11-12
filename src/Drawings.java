@@ -1,5 +1,10 @@
 import java.awt.*;
+
 import java.awt.Graphics;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Line2D;
+import java.awt.geom.RoundRectangle2D;
+
 import javax.swing.*;
 
 public class Drawings extends JPanel{
@@ -43,7 +48,9 @@ public class Drawings extends JPanel{
 
         frame.validate(); // because you added panel after setVisible was called
         frame.repaint(); // because you added panel after setVisible was called
-		
+        
+        JPanel circle = new MyCircleJPanel();
+		frame.add(circle);
 	}	
 	
 }
@@ -62,8 +69,8 @@ class MyRectangleJPanel extends JPanel {
     }
 }
 
-class MyCircleJPanel extends JFrame {
-    @Override
+class MyCircleJPanel extends JPanel{
+    
     public void paintComponent(Graphics g) {
     	Graphics2D g2 = (Graphics2D) g;
         Shape line = new Line2D.Double(3, 3, 303, 303);
