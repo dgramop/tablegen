@@ -1,6 +1,6 @@
 package tablegen;
 
-public class Switch implements TableComponent{
+public class Switch {
 	private double x;
 	private double y;
 	private boolean circuitBreaker;
