@@ -6,13 +6,13 @@ public class Table {
 private double tableTopLength;
 private double tableTopWidth;
 
-private final double tableTopThickness = 1.0;
+public static final double tableTopThickness = 1.0;
 
 Leg[] tableLegs = new Leg[4];
 ArrayList<TableComponent> tableComponents = new ArrayList<>();
 Slat[] tableSlats = new Slat[3];
 
-public Table(double tableTopLength, double tableTopWidth, double tableOverhang, Leg[] tableLegs,
+public Table(double tableTopLength, double tableTopWidth, Leg[] tableLegs,
 		ArrayList<TableComponent> tableComponents) {
 	super();
 	this.tableTopLength = tableTopLength;
