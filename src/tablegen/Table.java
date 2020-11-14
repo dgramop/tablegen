@@ -12,6 +12,14 @@ Leg[] tableLegs = new Leg[4];
 ArrayList<TableComponent> tableComponents = new ArrayList<>();
 Slat[] tableSlats = new Slat[3];
 
+/**
+ * 
+ * @param tableTopLength the length of the table top
+ * @param tableTopWidth the width of the table top
+ * @param tableOverhang
+ * @param tableLegs
+ * @param tableComponents
+ */
 public Table(double tableTopLength, double tableTopWidth, Leg[] tableLegs,
 		ArrayList<TableComponent> tableComponents) {
 	super();
