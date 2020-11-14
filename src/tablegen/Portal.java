@@ -1,5 +1,6 @@
 package tablegen;
 import java.awt.*;
+import java.awt.event.*;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -7,6 +8,9 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 public class Portal {
+	
+	static int height, width, length, overhang;
+	
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,6 +38,21 @@ public class Portal {
         JTextField overhangField = new JTextField();
         overhangField.setBounds(300, 200, 150, 20);
         
+        JButton b = new JButton("Submit");
+        b.setBounds(250, 250, 100, 20);
+        
+        
+        
+        b.addActionListener(new ActionListener(){  
+            public void actionPerformed(ActionEvent e){  
+                    height = Integer.parseInt(heightLabel.getText());
+                    width = Integer.parseInt(widthLabel.getText());
+                    length = Integer.parseInt(lengthLabel.getText());
+                    overhang = Integer.parseInt(overhangLabel.getText());
+                    
+                }  
+            });
+        
         
         
         frame.add(heightLabel);
@@ -44,6 +63,7 @@ public class Portal {
         frame.add(lengthField);
         frame.add(overhangLabel);
         frame.add(overhangField);
+        frame.add(b);
         
         frame.setLayout(null);
         frame.setVisible(true);
