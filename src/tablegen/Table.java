@@ -6,6 +6,7 @@ public class Table {
 private double tableTopLength;
 private double tableTopWidth;
 private double tableOverhang;
+private final double tableTopThickness = 1.0;
 
 Leg[] tableLegs = new Leg[4];
 ArrayList<TableComponent> tableComponents = new ArrayList<>();
@@ -37,6 +38,10 @@ public double getTableOverhang() {
 
 public void setTableOverhang(double tableOverhang) {
 	this.tableOverhang = tableOverhang;
+}
+
+public double getTableTopThickness() {
+	return tableTopThickness;
 }
 
 

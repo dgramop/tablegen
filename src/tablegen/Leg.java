@@ -4,8 +4,8 @@ public class Leg  {
 private double x;
 private double y;
 private double height;
-private static final double width = 1.5;
-private static final double length = 3.5;
+public static final double width = 1.5;
+public static final double length = 3.5;
 
 public Leg(double x, double y, double h)
 {

@@ -12,7 +12,7 @@ public class Receptacle {
 		this.numReceptacles = numReceptacles;
 
 	}
-
+	
 	public double getX() {
 		return x;
 	}
