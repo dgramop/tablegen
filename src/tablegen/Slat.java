@@ -1,6 +1,6 @@
 package tablegen;
 
-public class Slat implements TableComponent{
+public class Slat {
 
 	private double x;
 	private double y;

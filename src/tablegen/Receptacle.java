@@ -1,6 +1,6 @@
 package tablegen;
 
-public class Receptacle implements TableComponent{
+public class Receptacle {
 	private double x;
 	private double y;
 	// type receptacle
@@ -12,7 +12,7 @@ public class Receptacle implements TableComponent{
 		this.numReceptacles = numReceptacles;
 
 	}
-
+	
 	public double getX() {
 		return x;
 	}
@@ -37,7 +37,24 @@ public class Receptacle implements TableComponent{
 		this.numReceptacles = numReceptacles;
 	}
 
-	public double calculatePrice() {
-		return 0.0;
+	public double getPrice(ApplianceStore store) {
+		double price = 0.0;
+		switch(store) {
+		case HomeDepot:
+			price = 1.04;
+			//https://www.homedepot.com/p/Leviton-15-Amp-Tamper-Resistant-Duplex-Outlet-White-10-Pack-M22-T5320-WMP/100684043
+			price+=0.21;
+			//https://www.homedepot.com/p/Leviton-1-Gang-White-Duplex-Outlet-Wall-Plate-10-Pack-M24-88003-WMP/100357040
+			price+=0.43;
+			//https://www.homedepot.com/p/Carlon-1-Gang-20-cu-in-New-Work-PVC-Electrical-Outlet-Box-B120A-UPC/205319652
+			break;
+		case Ikea:
+			price = -1;
+			break;
+		case Target:
+			price = -1;
+			break;
+		}
+		return price;
 	}
 }
