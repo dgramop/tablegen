@@ -1,0 +1,25 @@
+﻿Our overall goal is to create a Java program that uses GUI to design a work table. The program gathers specifications from customers, computes the price and coordinates of appliances and add-ons, and renders a basic diagram of the table. 
+
+
+So far, the following has been accomplished:
+* The group has been familiarized on git. We are not using git-flow or any kind of git methodology like that because we had some new-to-git members. We’ve agreed on some basic git hygiene like leaving at least somewhat descriptive commit messages and no-force-push without group consensus.
+* Learned how to draw basic graphics
+* Coded the portal where customers can enter and submit their desired table dimensions
+* Wrote the code that checks the values the customer enters and makes sure they are valid numbers before storing them to variables
+* Coded the basic methods in the classes for all table components
+   * Leg
+   * Slat
+   * Lamp
+   * Receptacle
+   * Switch
+   * Table
+* Started collecting prices for the different components of the table for different stores
+* Computing the position of the table’s legs based on the dimensions of the table and the overhang requested by the customer
+
+
+To Do:
+* Write more code for the user input portal - ask how many add-on appliances
+* Display the correct graphics with the correct locations/dimensions
+* Finish gathering and inputting prices for each component and store
+* Write code that calculates the placement of objects and validates they are not on top of eachother
+* Additional validation (i.e. lamps and receptacles must be kept a certain distance from each other to prevent overlapping, tables must be large enough to contain lamps and receptacles, overhand must not create a condition in which there is not enough space for the legs)
