@@ -1,11 +1,14 @@
 package tablegen;
 import java.awt.*;
+
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.util.regex.*;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class Portal {
@@ -14,9 +17,13 @@ public class Portal {
 	
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
         frame.setSize(600, 400);
+        
+        JPanel panel1 = new JPanel();
+        JPanel panel2 = new JPanel();
+        
+        MyRectangleJPanel panel = new MyRectangleJPanel();
        
         JLabel errorMessage = new JLabel("error");
         errorMessage.setBounds(200, 300, 180, 20);
@@ -46,8 +53,14 @@ public class Portal {
         
         
         
+        JLabel l2 = new JLabel("The JLabel");
+        l2.setBounds(100,150,180,20);
+        
+        
         b.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){  
+            	//check if boxes are all filled
+            	
             	if(heightField.getText().matches("[0-9]+") &&
             	widthField.getText().matches("[0-9]+") &&
             	lengthField.getText().matches("[0-9]+") &&
@@ -62,6 +75,21 @@ public class Portal {
                     	width = w;
                     	length = l;
                     	overhang = o;
+                    	errorMessage.setText("success");
+                    	
+                    	//BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+                    	//Graphics2D graphics2D = image.createGraphics();
+                    	//graphics2D.fillRect(50, 20, 100, 100);
+                    	Graphics g = null;
+                    	//g.drawRect(100, 100, w, h);
+                    	
+                    	
+                    	panel.setLength(length);
+                    	panel.setWidth(width);
+                        //frame.add(panel);
+                    	
+                    	frame.setContentPane(panel);
+                    	panel.paintComponent(g);
                     }
                     else {
                     	errorMessage.setText("Please enter valid dimensions");
@@ -81,22 +109,47 @@ public class Portal {
         });
         
         
+        panel1.add(heightLabel);
+        panel1.add(heightField);
+        panel1.add(widthLabel);
+        panel1.add(widthField);
+        panel1.add(lengthLabel);
+        panel1.add(lengthField);
+        panel1.add(overhangLabel);
+        panel1.add(overhangField);
+        panel1.add(b);
+        panel1.add(errorMessage);
+        panel1.setLayout(null);
+        panel2.add(l2);
         
-        frame.add(heightLabel);
-        frame.add(heightField);
-        frame.add(widthLabel);
-        frame.add(widthField);
-        frame.add(lengthLabel);
-        frame.add(lengthField);
-        frame.add(overhangLabel);
-        frame.add(overhangField);
-        frame.add(b);
-        frame.add(errorMessage);
-        
-        frame.setLayout(null);
         frame.setVisible(true);
+        frame.setContentPane(panel1);
         
         
 	}
 	
+}
+
+class MyRectangleJPanel extends JPanel {
+	int length;
+	int width;
+	
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.setColor(Color.BLUE);
+        g.fillRect(50, 20, length, width);
+        
+        
+    }
+    
+    public void setLength(int length) {
+    	this.length = length;
+    }
+    
+    public void setWidth(int width) {
+    	this.width = width;
+    }
+
+
 }

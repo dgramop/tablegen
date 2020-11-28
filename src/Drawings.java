@@ -67,6 +67,8 @@ class MyRectangleJPanel extends JPanel {
         g2.setColor(Color.red);
         g2.drawRect(10, 10, 100, 100);   
     }
+    
+   
 }
 
 class MyCircleJPanel extends JPanel{
