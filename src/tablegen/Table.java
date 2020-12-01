@@ -43,18 +43,18 @@ public class Table {
 		for (Leg l : tableLegs) {
 			price += l.getPrice(woodandmore);
 		}
-switch(woodandmore) {
-case HomeDepot:
-	price+= 28.97;
-	//https://www.homedepot.com/p/Veranda-Melamine-White-Panel-Common-3-4-in-x-4-ft-x-8-ft-Actual-750-in-x-49-in-x-97-in-461877/100070209?source=shoppingads&locale=en-US&mtc=Shopping-VF-F_D21-G-D21-21_5_BOARDS-Generic-NA-Feed-LIA-NA-NA-BOARDS&cm_mmc=Shopping-VF-F_D21-G-D21-21_5_BOARDS-Generic-NA-Feed-LIA-NA-NA-BOARDS-71700000053671446-58700005130561935-92700045041683771&gclid=CjwKCAiA8Jf-BRB-EiwAWDtEGm5IRdf93R8YBibgutIgg5r3G6RaNEwPU38rLNYXQjbpVySBk4keyhoCvm8QAvD_BwE&gclsrc=aw.ds
-	break;
-case Lowes:
-	price+= 28.97;
-	//https://www.lowes.com/pd/Melamine-Board-Actual-0-75-in-x-49-in-x-8-08-ft/3605066
-	break;
-case Ikea:
-	break;
-}
+		switch (woodandmore) {
+		case HomeDepot:
+			price += 28.97;
+			// https://www.homedepot.com/p/Veranda-Melamine-White-Panel-Common-3-4-in-x-4-ft-x-8-ft-Actual-750-in-x-49-in-x-97-in-461877/100070209?source=shoppingads&locale=en-US&mtc=Shopping-VF-F_D21-G-D21-21_5_BOARDS-Generic-NA-Feed-LIA-NA-NA-BOARDS&cm_mmc=Shopping-VF-F_D21-G-D21-21_5_BOARDS-Generic-NA-Feed-LIA-NA-NA-BOARDS-71700000053671446-58700005130561935-92700045041683771&gclid=CjwKCAiA8Jf-BRB-EiwAWDtEGm5IRdf93R8YBibgutIgg5r3G6RaNEwPU38rLNYXQjbpVySBk4keyhoCvm8QAvD_BwE&gclsrc=aw.ds
+			break;
+		case Lowes:
+			price += 28.97;
+			// https://www.lowes.com/pd/Melamine-Board-Actual-0-75-in-x-49-in-x-8-08-ft/3605066
+			break;
+		case Ikea:
+			break;
+		}
 		return price;
 
 	}

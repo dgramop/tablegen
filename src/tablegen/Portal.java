@@ -83,13 +83,41 @@ public class Portal {
             	lengthField.getText().matches("[0-9]+") &&
             	overhangField.getText().matches("[0-9]+") &&
             	lampField.getText().matches("[0-9]+") &&
-            	receptacleField.getText().matches("[0-9]+")){
+            	receptacleField.getText().matches("[0-9]+")&&
+            	(store1Field.getText().equals("HomeDepot")||store1Field.getText().equals("Lowes"))&&
+            		(store2Field.getText().equals("HomeDepot")||store2Field.getText().equals("Lowes")||store2Field.getText().equals("Ikea"))){
             	    int h = Integer.parseInt(heightField.getText());
                     int w = Integer.parseInt(widthField.getText());
                     int l = Integer.parseInt(lengthField.getText());
                     int o = Integer.parseInt(overhangField.getText());
                     int la = Integer.parseInt(lampField.getText());
                     int r = Integer.parseInt(receptacleField.getText());
+                    
+                    ApplianceStore woodstore;
+                    ApplianceStore lampstore;
+                    if(store1Field.getText().equals("HomeDepot"))
+                    {
+                    	woodstore = ApplianceStore.HomeDepot;
+                    }
+                    else {
+                     woodstore = ApplianceStore.Lowes;
+                    		}
+                    
+                    if(store2Field.getText().equals("HomeDepot"))
+                    {
+                    	 lampstore = ApplianceStore.HomeDepot;
+                    }
+                    else if(store2Field.getText().equals("Ikea"))
+                    {
+                    	lampstore = ApplianceStore.Ikea;
+                    }
+                    else {
+                    	 lampstore = ApplianceStore.Lowes;
+                    		}
+                    
+                    
+                    
+                   
                     
                     if(h>0 && w>0 && l>0 && o>0) {
                     	height = h;
@@ -101,7 +129,11 @@ public class Portal {
                     	errorMessage.setText("success");
                     	
                     	table = TableMaker.makeTable(height, width, length, overhang, lamps, receptacles);
-                    	                   	
+
+                    	System.out.println(table.calculatePrice(woodstore, lampstore));
+                    	
+                    	
+
                     	
                     	panel.setLength(length);
                     	panel.setWidth(width);
