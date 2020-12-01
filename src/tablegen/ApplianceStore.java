@@ -1,5 +1,5 @@
 package tablegen;
 
 public enum ApplianceStore {
-Ikea, Target, HomeDepot, Lowes
+Ikea, HomeDepot, Lowes
 }

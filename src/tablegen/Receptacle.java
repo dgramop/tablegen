@@ -51,9 +51,6 @@ public class Receptacle implements TableComponent{
 		case Ikea:
 			price = -1;
 			break;
-		case Target:
-			price = -1;
-			break;
 		case Lowes:
 			price = 0.58;
 			//https://www.lowes.com/pd/Eaton-White-15-Amp-Duplex-Outlet-Residential-Outlet/1098367

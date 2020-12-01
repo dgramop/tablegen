@@ -32,7 +32,16 @@ public Table(double tableTopLength, double tableTopWidth, Leg[] tableLegs,
 }
 
 public double calculatePrice() {
-return 0.0;	
+double price = 0.0;
+for(TableComponent t: tableComponents)
+{
+	price+=t.getPrice(ApplianceStore.HomeDepot);
+}
+for(Leg l:tableLegs)
+{
+	price+=l.getPrice(ApplianceStore.HomeDepot);
+}
+return price;
 }
 
 public double getTableTopLength() {
