@@ -64,11 +64,6 @@ public class Portal {
         b.setBounds(450, 300, 100, 20);
         
         
-        
-        JLabel l2 = new JLabel("The JLabel");
-        l2.setBounds(100,150,180,20);
-        
-        
         b.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){  
             	//check if boxes are all filled
@@ -146,7 +141,7 @@ public class Portal {
         panel1.add(b);
         panel1.add(errorMessage);
         panel1.setLayout(null);
-        panel2.add(l2);
+        //panel2.add(l2);
         
         frame.setVisible(true);
         frame.setContentPane(panel1);
@@ -172,10 +167,14 @@ class TableJPanel extends JPanel {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         Shape rect = new Rectangle(200, 100, width, length);
-        Shape leg1 = new Rectangle(200 + overhang, 100 + overhang, 25,25);
-        Shape leg2 = new Rectangle(200 + width - overhang - 25, 100 + overhang, 25,25);
-        Shape leg3 = new Rectangle(200 + overhang, 100 + length - overhang - 25, 25,25);
-        Shape leg4 = new Rectangle(200 + width - overhang - 25, 100 + length - overhang - 25, 25,25);
+        Shape leg1 = new Rectangle(200 + overhang, 100 + overhang, 20,10);
+        Shape leg2 = new Rectangle(200 + width - overhang - 20, 100 + overhang, 20,10);
+        Shape leg3 = new Rectangle(200 + overhang, 100 + length - overhang - 10, 20,10);
+        Shape leg4 = new Rectangle(200 + width - overhang - 20, 100 + length - overhang - 10, 20,10);
+        Shape slat1 = new Rectangle(200 +overhang, 100 + overhang, width - (overhang*2), 10);
+        Shape slat2 = new Rectangle();
+        Shape slat3 = new Rectangle();
+        
         
         Shape topView = new Rectangle(500, 100, width, length);
         
@@ -184,6 +183,7 @@ class TableJPanel extends JPanel {
         g2.draw(leg2);
         g2.draw(leg3);
         g2.draw(leg4);
+        g2.draw(slat1);
         g2.draw(topView);
         
     }
