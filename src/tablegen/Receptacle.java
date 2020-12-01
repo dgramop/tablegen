@@ -1,6 +1,6 @@
 package tablegen;
 
-public class Receptacle {
+public class Receptacle implements TableComponent{
 	private double x;
 	private double y;
 	// type receptacle
@@ -51,8 +51,13 @@ public class Receptacle {
 		case Ikea:
 			price = -1;
 			break;
-		case Target:
-			price = -1;
+		case Lowes:
+			price = 0.58;
+			//https://www.lowes.com/pd/Eaton-White-15-Amp-Duplex-Outlet-Residential-Outlet/1098367
+			price+= 0.35;
+			//https://www.lowes.com/pd/Eaton-1-Gang-White-Single-Duplex-Standard-Wall-Plate/1001456742
+			price+=0.32;
+			//https://www.lowes.com/pd/CARLON-1-Gang-Blue-Plastic-New-Work-Standard-Switch-Outlet-Wall-Electrical-Box/1000108303
 			break;
 		}
 		return price;
