@@ -19,6 +19,7 @@ public class TableMaker {
 		leg[1]=new Leg(overhang,width-overhang-Leg.width,height-Table.tableTopThickness);
 		leg[2]=new Leg(length-overhang-Leg.length,overhang,height-Table.tableTopThickness);
 		leg[3]=new Leg(length-overhang-Leg.length,width-overhang-Leg.width,height-Table.tableTopThickness);
+		
 		ArrayList<TableComponent> components = new ArrayList<TableComponent>();
 		for(int i = 1; i<=lamp; i++)
 		{

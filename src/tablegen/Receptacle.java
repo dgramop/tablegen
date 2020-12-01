@@ -3,14 +3,13 @@ package tablegen;
 public class Receptacle implements TableComponent{
 	private double x;
 	private double y;
-	// type receptacle
-	//private int numReceptacles;
+
 
 	public Receptacle(double x, double y) {
-	//, int numReceptacles
+
 		this.x = x;
 		this.y = y;
-		//this.numReceptacles = numReceptacles;
+	
 
 	}
 	
@@ -29,15 +28,7 @@ public class Receptacle implements TableComponent{
 	public void setY(double y) {
 		this.y = y;
 	}
-/*
-	public int getNumReceptacles() {
-		return numReceptacles;
-	}
 
-	public void setNumReceptacles(int numReceptacles) {
-		this.numReceptacles = numReceptacles;
-	}
-*/
 	public double getPrice(ApplianceStore store) {
 		double price = 0.0;
 		switch(store) {
