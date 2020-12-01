@@ -95,8 +95,8 @@ public class Portal {
                     	receptacles = r;
                     	errorMessage.setText("success");
                     	
-                    	table = TableMaker.makeTable(height, width, length, overhang);
-                    	
+                    	table = TableMaker.makeTable(height, width, length, overhang, lamps, receptacles);
+                    	System.out.println(table.calculatePrice());
                     	//BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
                     	//Graphics2D graphics2D = image.createGraphics();
                     	//graphics2D.fillRect(50, 20, 100, 100);
