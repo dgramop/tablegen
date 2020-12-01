@@ -20,7 +20,7 @@ public class Portal {
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
-        frame.setSize(1000, 500);
+        frame.setSize(1200, 700);
         
         JPanel panel1 = new JPanel();
         JPanel panel2 = new JPanel();
@@ -51,14 +51,24 @@ public class Portal {
         overhangField.setBounds(300, 200, 150, 20);
         
         JLabel lampLabel = new JLabel("Enter Number of Lamps(0-5):");
-        lampLabel.setBounds(500,80,180,20);
+        lampLabel.setBounds(500,50,180,20);
         JTextField lampField = new JTextField();
-        lampField.setBounds(720, 80, 150, 20);
+        lampField.setBounds(720, 50, 150, 20);
         
         JLabel receptacleLabel = new JLabel("Enter Number of Receptacles(0-3):");
-        receptacleLabel.setBounds(500,150,200,20);
+        receptacleLabel.setBounds(500,100,200,20);
         JTextField receptacleField = new JTextField();
-        receptacleField.setBounds(720, 150, 150, 20);
+        receptacleField.setBounds(720, 100, 150, 20);
+        
+        JLabel store1Label = new JLabel("Enter Store for Wood/Electronics:");
+        store1Label.setBounds(500,150,200,20);
+        JTextField store1Field = new JTextField();
+        store1Field.setBounds(720, 150, 150, 20);
+        
+        JLabel store2Label = new JLabel("Enter Store for Lamps:");
+        store2Label.setBounds(500,200,200,20);
+        JTextField store2Field = new JTextField();
+        store2Field.setBounds(720, 200, 150, 20);
         
         JButton b = new JButton("Submit");
         b.setBounds(450, 300, 100, 20);
@@ -138,6 +148,10 @@ public class Portal {
         panel1.add(lampField);
         panel1.add(receptacleLabel);
         panel1.add(receptacleField);
+        panel1.add(store1Label);
+        panel1.add(store1Field);
+        panel1.add(store2Label);
+        panel1.add(store2Field);
         panel1.add(b);
         panel1.add(errorMessage);
         panel1.setLayout(null);
@@ -166,17 +180,21 @@ class TableJPanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        Shape rect = new Rectangle(200, 100, width, length);
-        Shape leg1 = new Rectangle(200 + overhang, 100 + overhang, 20,10);
-        Shape leg2 = new Rectangle(200 + width - overhang - 20, 100 + overhang, 20,10);
-        Shape leg3 = new Rectangle(200 + overhang, 100 + length - overhang - 10, 20,10);
-        Shape leg4 = new Rectangle(200 + width - overhang - 20, 100 + length - overhang - 10, 20,10);
-        Shape slat1 = new Rectangle(200 +overhang, 100 + overhang, width - (overhang*2), 10);
-        Shape slat2 = new Rectangle();
-        Shape slat3 = new Rectangle();
+        Shape rect = new Rectangle(500, 70, length, width);
+        Shape leg1 = new Rectangle(500 + overhang, 70 + overhang, 20,10);
+        Shape leg2 = new Rectangle(500 + length - overhang - 20, 70 + overhang, 20,10);
+        Shape leg3 = new Rectangle(500 + overhang, 70 + width - overhang - 10, 20,10);
+        Shape leg4 = new Rectangle(500 + length - overhang - 20, 70 + width - overhang - 10, 20,10);
+        
+        Shape slat1 = new Rectangle(500 +overhang, 70 + overhang, length - (overhang*2), 10);
+        Shape slat2 = new Rectangle(500 +overhang, 70 + overhang, 20, width - (overhang*2));
+        Shape slat3 = new Rectangle(500 + length - overhang - 20, 70 + overhang, 20, width - (overhang*2));
         
         
-        Shape topView = new Rectangle(500, 100, width, length);
+        Shape topView = new Rectangle(100, 70, length, width);
+        
+        JLabel label = new JLabel("label");
+        label.setBounds(20,20, 100, 10);
         
         g2.draw(rect);
         g2.draw(leg1);
@@ -184,7 +202,10 @@ class TableJPanel extends JPanel {
         g2.draw(leg3);
         g2.draw(leg4);
         g2.draw(slat1);
+        g2.draw(slat2);
+        g2.draw(slat3);
         g2.draw(topView);
+        
         
     }
     
