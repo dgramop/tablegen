@@ -101,22 +101,19 @@ public class Portal {
                     	errorMessage.setText("success");
                     	
                     	table = TableMaker.makeTable(height, width, length, overhang, lamps, receptacles);
-                    	//System.out.println(table.calculatePrice());
-                    	//BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-                    	//Graphics2D graphics2D = image.createGraphics();
-                    	//graphics2D.fillRect(50, 20, 100, 100);
-                    	//Graphics g = null;
-                    	//g.drawRect(100, 100, w, h);
-                    	
+                    	                   	
                     	
                     	panel.setLength(length);
                     	panel.setWidth(width);
                     	panel.setOverhang(overhang);
-                        //frame.add(panel);
+                        
+                    	JLabel topLabel = new JLabel("Top View");
+                    	topLabel.setBounds(20,20,100,10);
+                    	panel.add(topLabel);
                     	
                     	frame.setContentPane(panel);
                     	frame.validate();
-                    	//panel.paintComponent(g);
+                    	
                     }
                     else {
                     	errorMessage.setText("Please enter valid dimensions");
@@ -155,7 +152,7 @@ public class Portal {
         panel1.add(b);
         panel1.add(errorMessage);
         panel1.setLayout(null);
-        //panel2.add(l2);
+        
         
         frame.setVisible(true);
         frame.setContentPane(panel1);
@@ -180,18 +177,21 @@ class TableJPanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        Shape rect = new Rectangle(500, 70, length, width);
-        Shape leg1 = new Rectangle(500 + overhang, 70 + overhang, 20,10);
-        Shape leg2 = new Rectangle(500 + length - overhang - 20, 70 + overhang, 20,10);
-        Shape leg3 = new Rectangle(500 + overhang, 70 + width - overhang - 10, 20,10);
-        Shape leg4 = new Rectangle(500 + length - overhang - 20, 70 + width - overhang - 10, 20,10);
         
-        Shape slat1 = new Rectangle(500 +overhang, 70 + overhang, length - (overhang*2), 10);
-        Shape slat2 = new Rectangle(500 +overhang, 70 + overhang, 20, width - (overhang*2));
-        Shape slat3 = new Rectangle(500 + length - overhang - 20, 70 + overhang, 20, width - (overhang*2));
+        Shape topView = new Rectangle(70, 70, length, width);
+        
+        Shape rect = new Rectangle(350, 70, length, width);
+        Shape leg1 = new Rectangle(350 + overhang, 70 + overhang, 20,10);
+        Shape leg2 = new Rectangle(350 + length - overhang - 20, 70 + overhang, 20,10);
+        Shape leg3 = new Rectangle(350 + overhang, 70 + width - overhang - 10, 20,10);
+        Shape leg4 = new Rectangle(350 + length - overhang - 20, 70 + width - overhang - 10, 20,10);
+        
+        Shape slat1 = new Rectangle(350 +overhang, 70 + overhang, length - (overhang*2), 10);
+        Shape slat2 = new Rectangle(350 +overhang, 70 + overhang, 20, width - (overhang*2));
+        Shape slat3 = new Rectangle(350 + length - overhang - 20, 70 + overhang, 20, width - (overhang*2));
         
         
-        Shape topView = new Rectangle(100, 70, length, width);
+        
         
         JLabel label = new JLabel("label");
         label.setBounds(20,20, 100, 10);
