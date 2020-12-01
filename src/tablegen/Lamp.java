@@ -1,6 +1,6 @@
 package tablegen;
 
-public class Lamp {
+public class Lamp implements TableComponent {
 
 	private double x;
 	private double y;
@@ -51,6 +51,11 @@ public class Lamp {
 			break;
 		case Target:
 			price = -1;
+			break;
+			
+		case Lowes:
+			price = 19.99;
+			//https://www.lowes.com/pd/Globe-Electric-Architect-Lamp-31-5-in-Adjustable-Black-Clip-Desk-Lamp-with-Metal-Shade/1002981060
 			break;
 		}
 		return price;

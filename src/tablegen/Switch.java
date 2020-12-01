@@ -1,6 +1,6 @@
 package tablegen;
 
-public class Switch {
+public class Switch implements TableComponent{
 	private double x;
 	private double y;
 	private boolean circuitBreaker;
@@ -36,7 +36,7 @@ public class Switch {
 		this.circuitBreaker = circuitBreaker;
 	}
 
-	public double calculatePrice() {
+	public double getPrice(ApplianceStore store) {
 		return 0.0;
 	}
 }

@@ -1,6 +1,6 @@
 package tablegen;
 
-public class Leg  {
+public class Leg {
 private double x;
 private double y;
 private double height;
