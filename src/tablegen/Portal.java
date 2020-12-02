@@ -131,7 +131,8 @@ public class Portal {
                     	table = TableMaker.makeTable(height, width, length, overhang, lamps, receptacles);
 
                     	System.out.println(table.calculatePrice(woodstore, lampstore));
-                    	
+                    	Instructions i = new Instructions(table);
+                    	System.out.println(i.writeInstructions());
                     	
 
                     	

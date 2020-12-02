@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class Table {
 	private double tableTopLength;
 	private double tableTopWidth;
+	private ApplianceStore woodStore;
+	private ApplianceStore lampStore;
 
 	public static final double tableTopThickness = 0.8;
 
@@ -32,6 +34,8 @@ public class Table {
 	}
 
 	public double calculatePrice(ApplianceStore woodandmore, ApplianceStore lamp) {
+		woodStore = woodandmore;
+		lampStore = lamp;
 		double price = 0.0;
 		for (TableComponent t : tableComponents) {
 			if (t instanceof Lamp) {
@@ -78,5 +82,31 @@ public class Table {
 	public double getTableTopThickness() {
 		return tableTopThickness;
 	}
+
+	public String getWoodStore() {
+		if(woodStore == ApplianceStore.HomeDepot)
+		{
+			return "HomeDepot";
+		}
+		else {
+			return "Lowes";
+		}
+	}
+
+
+	public String getLampStore() {
+		if(lampStore == ApplianceStore.HomeDepot)
+		{
+			return "HomeDepot";
+		}
+		else if (lampStore==ApplianceStore.Lowes){
+			return "Lowes";
+		}
+		else {
+			return "Ikea";
+		}
+	}
+
+	
 
 }
