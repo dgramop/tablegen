@@ -60,13 +60,17 @@ public class Portal {
         JTextField receptacleField = new JTextField();
         receptacleField.setBounds(720, 100, 150, 20);
         
-        JLabel store1Label = new JLabel("Enter Store for Wood/Electronics:");
+        JLabel store1Label = new JLabel("Enter Store for Wood/Electric:");
         store1Label.setBounds(500,150,200,20);
+        JLabel store1options = new JLabel("(Lowes, HomeDepot)");
+        store1options.setBounds(500,170,200,20);
         JTextField store1Field = new JTextField();
         store1Field.setBounds(720, 150, 150, 20);
         
         JLabel store2Label = new JLabel("Enter Store for Lamps:");
         store2Label.setBounds(500,200,200,20);
+        JLabel store2options = new JLabel("(Ikea, Lowes, HomeDepot)");
+        store2options.setBounds(500,220,200,20);
         JTextField store2Field = new JTextField();
         store2Field.setBounds(720, 200, 150, 20);
         
@@ -130,9 +134,9 @@ public class Portal {
                     	
                     	table = TableMaker.makeTable(height, width, length, overhang, lamps, receptacles);
 
-                    	System.out.println(table.calculatePrice(woodstore, lampstore));
+                    double price = 	table.calculatePrice(woodstore, lampstore);
                     	Instructions i = new Instructions(table);
-                    	System.out.println(i.writeInstructions());
+                    	String instructions = (i.writeInstructions());
                     	
 
                     	panel.setTable(table);
@@ -153,6 +157,10 @@ public class Portal {
                     	sideLabel.setBounds(670, 40, 100, 20);
                     	panel.add(sideLabel);
                     	
+                    	JLabel priceLabel = new JLabel("Estimated Price:$"+ price);
+                    	priceLabel.setBounds(850, 40, 200, 20);
+                    	panel.add(priceLabel);
+                    	
                     	JLabel legLabel = new JLabel("Legs(4)");
                     	legLabel.setBounds(140, 270, 100, 20);
                     	panel.add(legLabel);
@@ -169,6 +177,10 @@ public class Portal {
                     	slat2Number.setBounds(310, 330, 20, 20);
                     	panel.add(slat2Number);
                     	
+                    /*	JLabel instructLabel = new JLabel(instructions);
+                    	instructLabel.setBounds(450, 330, 500, 100);
+                    	panel.add(instructLabel);
+                    */
                     	panel.setLayout(null);
                     	
                     	frame.setContentPane(panel);
@@ -207,8 +219,10 @@ public class Portal {
         panel1.add(receptacleField);
         panel1.add(store1Label);
         panel1.add(store1Field);
+        panel1.add(store1options);
         panel1.add(store2Label);
         panel1.add(store2Field);
+        panel1.add(store2options);
         panel1.add(b);
         panel1.add(errorMessage);
         panel1.setLayout(null);
