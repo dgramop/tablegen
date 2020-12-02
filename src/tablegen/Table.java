@@ -172,4 +172,22 @@ public class Table {
 			return null;
 		}
 	}
+	public String getReceptImage(ApplianceStore s) {
+		switch (s) {
+		case Ikea:
+			return null;
+			// https://www.ikea.com/us/en/p/tertial-work-lamp-with-led-bulb-dark-gray-00424985/
+		
+		case HomeDepot:
+			return "homedepotplug.jpg";
+			// https://www.homedepot.com/pep/Globe-Electric-32-in-Multi-Joint-Metal-Clamp-Black-Desk-Lamp-56963/205139331?source=shoppingads&locale=en-US&mtc=Shopping-B-F_D27L-G-D27L-27_16_INTERIOR_LIGHTING-NA-NA-Feed-PLA-NA-NA-INTERIOR_LIGHTING_GeneralInteriorLighting&cm_mmc=Shopping-B-F_D27L-G-D27L-27_16_INTERIOR_LIGHTING-NA-NA-Feed-PLA-NA-NA-INTERIOR_LIGHTING_GeneralInteriorLighting-71700000038836110-58700004241533705-92700052328522866&gclid=Cj0KCQiAnb79BRDgARIsAOVbhRqDDrtYvvqCGkmI1p5lgi4x38vwS8Lk2p67W1iLeY2wAQ740RhXdJsaAulEEALw_wcB&gclsrc=aw.ds
+			
+		case Lowes:
+			return "lowesplug.jpg" ; 
+			//https://www.lowes.com/pd/Globe-Electric-Architect-Lamp-31-5-in-Adjustable-Black-Clip-Desk-Lamp-with-Metal-Shade/1002981060
+		
+		default:
+			return null;
+		}
+	}
 }

@@ -308,6 +308,11 @@ class TableJPanel extends JPanel {
            legimg = ImageIO.read(new File(table.getLegImage(table.getWoodStoreEnum())));
         } catch (IOException e) {
         }
+        BufferedImage plugimg = null;
+        try {
+           plugimg = ImageIO.read(new File(table.getReceptImage(table.getWoodStoreEnum())));
+        } catch (IOException e) {
+        }
 
         g2.draw(rect);
         g2.draw(leg1);
@@ -326,6 +331,7 @@ class TableJPanel extends JPanel {
         g2.draw(slatView2);
         g2.drawImage(lampimg, 100, 450, 100, 100, null);
         g2.drawImage(legimg, 250, 450, 100, 100, null);
+        g2.drawImage(plugimg, 400, 450, 100, 100, null);
         
     }
     
