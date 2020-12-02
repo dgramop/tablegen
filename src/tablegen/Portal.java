@@ -21,6 +21,19 @@ public class Portal {
 	static Table table;
 
 	
+	/**
+	 * Returns the scale factor you should use when rendering an object so it fits/fills the viewport and is still to-scale
+	 * @param itemHeight The height of your tallest dimension
+	 * @param itemWidth The width of your widest dimension
+	 * @param pixelHeight Target height in pixels
+	 * @param pixelWidth Target width in pixels
+	 * @return A scale factor to use to scale all the dimensions
+	 */
+	public static double getScaleFactor(double itemHeight, double itemWidth, int pixelHeight, int pixelWidth)
+	{
+		return Math.min(pixelHeight/itemHeight, pixelWidth/itemWidth);
+	}
+	
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
