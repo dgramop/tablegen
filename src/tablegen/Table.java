@@ -6,7 +6,7 @@ public class Table {
 	private double tableTopLength;
 	private double tableTopWidth;
 
-	public static final double tableTopThickness = 0.75;
+	public static final double tableTopThickness = 0.8;
 
 	Leg[] tableLegs = new Leg[4];
 	ArrayList<TableComponent> tableComponents = new ArrayList<>();
