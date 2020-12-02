@@ -16,6 +16,7 @@ public class Portal {
 	
 	static int height, width, length, overhang, lamps, receptacles;
 	static Table table;
+	static int scaleFactor;
 	
 	/**
 	 * Returns the scale factor you should use when rendering an object so it fits/fills the viewport and is still to-scale
@@ -145,6 +146,8 @@ public class Portal {
                     	receptacles = r;
                     	errorMessage.setText("success");
                     	
+                    	
+                    	scaleFactor = (int)getScaleFactor(height, width, 200, 200);
                     	table = TableMaker.makeTable(height, width, length, overhang, lamps, receptacles);
 
                     double price = 	table.calculatePrice(woodstore, lampstore);
@@ -153,10 +156,10 @@ public class Portal {
                     	
 
                     	panel.setTable(table);
-                    	panel.setLength(length);
-                    	panel.setWidth(width);
-                    	panel.setHeight(height);
-                    	panel.setOverhang(overhang);
+                    	panel.setLength(length * scaleFactor);
+                    	panel.setWidth(width * scaleFactor);
+                    	panel.setHeight(height * scaleFactor);
+                    	panel.setOverhang(overhang * scaleFactor);
                         
                     	JLabel topLabel = new JLabel("Top View");
                     	topLabel.setBounds(130,40,100,20);
