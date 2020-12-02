@@ -10,11 +10,13 @@ Instructions(Table t)
 public String writeInstructions() {
 	String instruct = "";
 	instruct+="Obtain 2x4 from "+tableObject.getWoodStore()+"\n"+
-	"cut four pieces of 2x4 wood to specified leg length (" +tableObject.tableLegs[0].getHeight()+")\n"+
-	"cut three pieces of wood to specified slats length ("+tableObject.getTableSlats()[0].getLength()+")\n"+ 
-	"cut Melamine White Panel to specified dimensions ("+tableObject.getTableTopLength()+","+tableObject.getTableTopWidth()+")\n"+
-	"screw slats onto legs at specified height"+
-	"screw legs onto table top with specified overhang on the outside \n";
+	"Cut four pieces of 2x4 wood to specified leg length (" +tableObject.tableLegs[0].getHeight()+"in.).\n"+
+	"Cut three pieces of wood to specified slats length ("+tableObject.getTableSlats()[0].getLength()+"in.).\n"+ 
+	"Cut Melamine White Panel to specified dimensions ("+tableObject.getTableTopLength()+"in., "+tableObject.getTableTopWidth()+"in.).\n"+
+	"Screw slats onto legs at specified height."+
+	"Screw legs onto table top with specified overhang on the outside. \n"+
+	"Obtain all the pieces for "+tableObject.getNumReceptacles()+" receptacles from "+ tableObject.getWoodStore()+".\n"+
+	"Purchase "+tableObject.getNumLamps()+" lamps from "+tableObject.getLampStore()+".\n";
 	
 	return instruct;
 }
