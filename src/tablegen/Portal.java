@@ -4,8 +4,11 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.regex.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,6 +20,7 @@ public class Portal {
 	static int height, width, length, overhang, lamps, receptacles;
 	static Table table;
 	static int scaleFactor;
+
 	
 	/**
 	 * Returns the scale factor you should use when rendering an object so it fits/fills the viewport and is still to-scale
@@ -111,8 +115,9 @@ public class Portal {
                     int la = Integer.parseInt(lampField.getText());
                     int r = Integer.parseInt(receptacleField.getText());
                     
-                    ApplianceStore woodstore;
+                	ApplianceStore woodstore;
                     ApplianceStore lampstore;
+                    
                     if(store1Field.getText().equals("HomeDepot"))
                     {
                     	woodstore = ApplianceStore.HomeDepot;
@@ -272,6 +277,7 @@ class TableJPanel extends JPanel {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         
+        
         Shape topView = new Rectangle(70, 70, (int)(length), (int)(width));
         
         Shape rect = new Rectangle(350, 70, length, width);
@@ -293,6 +299,19 @@ class TableJPanel extends JPanel {
         Shape slatView1 = new Rectangle(350, 300, width-(overhang*2), 20);
         Shape slatView2 = new Rectangle(350, 330, length - (overhang*2), 20);
         
+      
+       
+        BufferedImage lampimg = null;
+        try {
+           lampimg = ImageIO.read(new File(table.getLampImage(table.getLampStoreEnum())));
+        } catch (IOException e) {
+        }
+        BufferedImage legimg = null;
+        try {
+           legimg = ImageIO.read(new File(table.getLegImage(table.getWoodStoreEnum())));
+        } catch (IOException e) {
+        }
+
         g2.draw(rect);
         g2.draw(leg1);
         g2.draw(leg2);
@@ -308,6 +327,8 @@ class TableJPanel extends JPanel {
         g2.draw(legView);
         g2.draw(slatView1);
         g2.draw(slatView2);
+        g2.drawImage(lampimg, 100, 450, 100, 100, null);
+        g2.drawImage(legimg, 250, 450, 100, 100, null);
         
     }
     

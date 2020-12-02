@@ -37,6 +37,8 @@ public class Lamp implements TableComponent {
 	public void setWidth(double width) {
 		this.width = width;
 	}
+	
+	
 
 	public double getPrice(ApplianceStore store) {
 		double price = 0;
