@@ -14,11 +14,11 @@ public class TableMaker {
 	 */
 	public static Table makeTable(int height,int width, int length, int overhang, int lamp, int receptacle)
 	{
-		Leg[] leg=new Leg[4];
-		leg[0]=new Leg(overhang,overhang,height-Table.tableTopThickness);
-		leg[1]=new Leg(overhang,width-overhang-Leg.width,height-Table.tableTopThickness);
-		leg[2]=new Leg(length-overhang-Leg.length,overhang,height-Table.tableTopThickness);
-		leg[3]=new Leg(length-overhang-Leg.length,width-overhang-Leg.width,height-Table.tableTopThickness);
+		Leg[] legs=new Leg[4];
+		legs[0]=new Leg(overhang,overhang,height-Table.tableTopThickness);
+		legs[1]=new Leg(overhang,width-overhang-Leg.width,height-Table.tableTopThickness);
+		legs[2]=new Leg(length-overhang-Leg.length,overhang,height-Table.tableTopThickness);
+		legs[3]=new Leg(length-overhang-Leg.length,width-overhang-Leg.width,height-Table.tableTopThickness);
 		
 		ArrayList<TableComponent> components = new ArrayList<TableComponent>();
 		for(int i = 1; i<=lamp; i++)
@@ -29,6 +29,11 @@ public class TableMaker {
 		{
 			components.add(new Receptacle(i, i));
 		}
-		return new Table(length, width, leg, components);
+		
+		Slat[] slats=new Slat[] { new Slat(new Leg[] {legs[0],legs[1]}, legs[1].getX()-legs[0].getX()-Leg.length, 1+Leg.width, false),
+		new Slat(new Leg[] {legs[0],legs[2]}, legs[1].getY()-legs[0].getY()-Leg.width, 1, true),
+		new Slat(new Leg[] {legs[1],legs[3]}, legs[1].getY()-legs[0].getY()-Leg.width, 1, true)};
+		
+		return new Table(length, width, legs, slats, components);
 	}
 }
