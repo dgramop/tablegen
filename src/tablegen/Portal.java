@@ -25,7 +25,7 @@ public class Portal {
         JPanel panel1 = new JPanel();
         JPanel panel2 = new JPanel();
         
-        TableJPanel panel = new TableJPanel(0,0,0,0);
+        TableJPanel panel = new TableJPanel(null, 0,0,0,0);
        
         JLabel errorMessage = new JLabel("");
         errorMessage.setBounds(200, 300, 180, 20);
@@ -134,7 +134,7 @@ public class Portal {
                     	
                     	
 
-                    	
+                    	panel.setTable(table);
                     	panel.setLength(length);
                     	panel.setWidth(width);
                     	panel.setHeight(height);
@@ -151,6 +151,10 @@ public class Portal {
                     	JLabel sideLabel = new JLabel("Side View");
                     	sideLabel.setBounds(670, 40, 100, 20);
                     	panel.add(sideLabel);
+                    	
+                    	JLabel legLabel = new JLabel("Legs(4)");
+                    	legLabel.setBounds(140, 270, 100, 20);
+                    	panel.add(legLabel);
                     	
                     	panel.setLayout(null);
                     	
@@ -210,11 +214,14 @@ class TableJPanel extends JPanel {
 	int width;
 	int height;
 	int overhang;
+	Table table;
 	
-	public TableJPanel(int length, int width, int height, int overhang) {
+	public TableJPanel(Table table, int length, int width, int height, int overhang) {
+		this.table = table;
 		this.length = length;
 		this.width = width;
-		this.overhang = overhang;
+		this.height = height;
+		this.overhang = overhang;		
 	}
 	
     @Override
@@ -222,7 +229,7 @@ class TableJPanel extends JPanel {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         
-        Shape topView = new Rectangle(70, 70, length, width);
+        Shape topView = new Rectangle(70, 70, (int)(length * 5), (int)(width*5));
         
         Shape rect = new Rectangle(350, 70, length, width);
         Shape leg1 = new Rectangle(350 + overhang, 70 + overhang, 20,10);
@@ -238,9 +245,7 @@ class TableJPanel extends JPanel {
         Shape sideLeg1 = new Rectangle(600+overhang, 74, 20, height - 4);
         Shape sideLeg2 = new Rectangle(600+length-overhang -20, 74, 20, height - 4);
         
-        
-        JLabel label = new JLabel("label");
-        label.setBounds(20,20, 100, 10);
+        Shape legView = new Rectangle(150, 300, 20, height -4);
         
         g2.draw(rect);
         g2.draw(leg1);
@@ -254,8 +259,13 @@ class TableJPanel extends JPanel {
         g2.draw(tableTop);
         g2.draw(sideLeg1);
         g2.draw(sideLeg2);
+        g2.draw(legView);
         
         
+    }
+    
+    public void setTable(Table table) {
+    	this.table = table;
     }
     
     public void setLength(int length) {
