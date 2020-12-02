@@ -5,6 +5,10 @@ import java.util.ArrayList;
 public class Table {
 	private double tableTopLength;
 	private double tableTopWidth;
+	private ApplianceStore woodStore;
+	private ApplianceStore lampStore;
+	private int numReceptacles;
+	private int numLamps;
 
 	public static final double tableTopThickness = 0.8;
 
@@ -14,9 +18,9 @@ public class Table {
 
 	/**
 	 * 
-	 * @param tableTopLength	the length of the table top
-	 * @param tableTopWidth  	the width of the table top
-	 * @param tableOverhang		
+	 * @param tableTopLength  the length of the table top
+	 * @param tableTopWidth   the width of the table top
+	 * @param tableOverhang
 	 * @param tableLegs
 	 * @param tableComponents
 	 */
@@ -31,11 +35,18 @@ public class Table {
 	}
 
 	public double calculatePrice(ApplianceStore woodandmore, ApplianceStore lamp) {
+		woodStore = woodandmore;
+		lampStore = lamp;
 		double price = 0.0;
 		for (TableComponent t : tableComponents) {
 			if (t instanceof Lamp) {
 				price += t.getPrice(lamp);
+				numLamps++;
 			} else {
+				if (t instanceof Receptacle) {
+					numReceptacles++;
+				}
+				
 				price += t.getPrice(woodandmore);
 			}
 		}
@@ -76,6 +87,32 @@ public class Table {
 
 	public double getTableTopThickness() {
 		return tableTopThickness;
+	}
+
+	public int getNumReceptacles() {
+		return numReceptacles;
+	}
+	
+	public int getNumLamps() {
+		return numLamps;
+	}
+
+	public String getWoodStore() {
+		if (woodStore == ApplianceStore.HomeDepot) {
+			return "HomeDepot";
+		} else {
+			return "Lowes";
+		}
+	}
+
+	public String getLampStore() {
+		if (lampStore == ApplianceStore.HomeDepot) {
+			return "HomeDepot";
+		} else if (lampStore == ApplianceStore.Lowes) {
+			return "Lowes";
+		} else {
+			return "Ikea";
+		}
 	}
 
 	/**
