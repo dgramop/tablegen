@@ -2,34 +2,23 @@ package tablegen;
 
 public class Slat {
 
-	private double x;
-	private double y;
 	private double height;
 
 	private double length;
+	
+	private boolean thick = false;
 
-	public Slat(double x, double y, double h, double l) {
-		this.x = x;
-		this.y = y;
+	/**
+	 * 
+	 * @param legs - The two legs that this slat joins
+	 * @param h - Height that the slat sits at
+	 * @param l - Length of the slat, from tip to tip
+	 * @param isThick - if this two-by-four's 3.5 inch side should face ups
+	 */
+	public Slat(Leg[] legs, double h, double l,boolean isThick) {
 		height = h;
 
 		length = l;
-	}
-
-	public double getX() {
-		return x;
-	}
-
-	public void setX(double x) {
-		this.x = x;
-	}
-
-	public double getY() {
-		return y;
-	}
-
-	public void setY(double y) {
-		this.y = y;
 	}
 
 	public double getHeight() {
@@ -50,6 +39,11 @@ public class Slat {
 
 	public double calculateFoot() {
 		return height * length;
+	}
+	
+	public boolean isThick()
+	{
+		return thick;
 	}
 
 	public double getPrice(ApplianceStore store) {
@@ -78,5 +72,6 @@ public class Slat {
 		}
 		return price;
 	}
+
 
 }

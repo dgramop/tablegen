@@ -14,21 +14,20 @@ public class Table {
 
 	/**
 	 * 
-	 * @param tableTopLength  the length of the table top
-	 * @param tableTopWidth   the width of the table top
-	 * @param tableOverhang
+	 * @param tableTopLength	the length of the table top
+	 * @param tableTopWidth  	the width of the table top
+	 * @param tableOverhang		
 	 * @param tableLegs
 	 * @param tableComponents
 	 */
-	public Table(double tableTopLength, double tableTopWidth, Leg[] tableLegs,
+	public Table(double tableTopLength, double tableTopWidth, Leg[] tableLegs, Slat[] tableSlats,
 			ArrayList<TableComponent> tableComponents) {
 		super();
 		this.tableTopLength = tableTopLength;
 		this.tableTopWidth = tableTopWidth;
-
 		this.tableLegs = tableLegs;
 		this.tableComponents = tableComponents;
-		this.tableSlats = null;// TODO: Katie compute slats
+		this.tableSlats = tableSlats;
 	}
 
 	public double calculatePrice(ApplianceStore woodandmore, ApplianceStore lamp) {
