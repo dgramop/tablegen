@@ -78,4 +78,18 @@ public class Table {
 		return tableTopThickness;
 	}
 
+	/**
+	 * @return the tableSlats
+	 */
+	public Slat[] getTableSlats() {
+		return tableSlats;
+	}
+
+	/**
+	 * @param tableSlats the tableSlats to set
+	 */
+	public void setTableSlats(Slat[] tableSlats) {
+		this.tableSlats = tableSlats;
+	}
+
 }
