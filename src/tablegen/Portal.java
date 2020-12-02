@@ -157,6 +157,18 @@ public class Portal {
                     	legLabel.setBounds(140, 270, 100, 20);
                     	panel.add(legLabel);
                     	
+                    	JLabel slatLabel = new JLabel("Slats");
+                    	slatLabel.setBounds(360, 270, 100, 20);
+                    	panel.add(slatLabel);
+                    	
+                    	JLabel slat1Number = new JLabel("(2)");
+                    	slat1Number.setBounds(310, 300, 20, 20);
+                    	panel.add(slat1Number);
+                    	
+                    	JLabel slat2Number = new JLabel("(1)");
+                    	slat2Number.setBounds(310, 330, 20, 20);
+                    	panel.add(slat2Number);
+                    	
                     	panel.setLayout(null);
                     	
                     	frame.setContentPane(panel);
@@ -230,7 +242,7 @@ class TableJPanel extends JPanel {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         
-        Shape topView = new Rectangle(70, 70, (int)(length * 5), (int)(width*5));
+        Shape topView = new Rectangle(70, 70, (int)(length), (int)(width));
         
         Shape rect = new Rectangle(350, 70, length, width);
         Shape leg1 = new Rectangle(350 + overhang, 70 + overhang, 20,10);
@@ -248,6 +260,9 @@ class TableJPanel extends JPanel {
         
         Shape legView = new Rectangle(150, 300, 20, height -4);
         
+        Shape slatView1 = new Rectangle(350, 300, width-(overhang*2), 20);
+        Shape slatView2 = new Rectangle(350, 330, length - (overhang*2), 20);
+        
         g2.draw(rect);
         g2.draw(leg1);
         g2.draw(leg2);
@@ -261,7 +276,8 @@ class TableJPanel extends JPanel {
         g2.draw(sideLeg1);
         g2.draw(sideLeg2);
         g2.draw(legView);
-        
+        g2.draw(slatView1);
+        g2.draw(slatView2);
         
     }
     
