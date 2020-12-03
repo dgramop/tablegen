@@ -152,7 +152,7 @@ public class Portal {
                     	errorMessage.setText("success");
                     	
                     	
-                    	scaleFactor = (int)getScaleFactor(height, width, 200, 200);
+                    	//scaleFactor = (int)getScaleFactor(height, width, 200, 200);
                     	table = TableMaker.makeTable(height, width, length, overhang, lamps, receptacles);
 
                     double price = 	table.calculatePrice(woodstore, lampstore);
@@ -161,10 +161,10 @@ public class Portal {
                     	
 
                     	panel.setTable(table);
-                    	panel.setLength(length * scaleFactor);
-                    	panel.setWidth(width * scaleFactor);
-                    	panel.setHeight(height * scaleFactor);
-                    	panel.setOverhang(overhang * scaleFactor);
+                    	panel.setLength(length);
+                    	panel.setWidth(width);
+                    	panel.setHeight(height);
+                    	panel.setOverhang(overhang);
                         
                     	JLabel topLabel = new JLabel("Top View");
                     	topLabel.setBounds(130,40,100,20);
@@ -277,27 +277,35 @@ class TableJPanel extends JPanel {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         
+        int topScaleFactor = (int)Portal.getScaleFactor(width, length, 200, 200);
+        Shape topView = new Rectangle(70, 70, length * topScaleFactor, width * topScaleFactor);
         
-        Shape topView = new Rectangle(70, 70, (int)(length), (int)(width));
         
-        Shape rect = new Rectangle(350, 70, length, width);
-        Shape leg1 = new Rectangle(350 + overhang, 70 + overhang, 20,10);
-        Shape leg2 = new Rectangle(350 + length - overhang - 20, 70 + overhang, 20,10);
-        Shape leg3 = new Rectangle(350 + overhang, 70 + width - overhang - 10, 20,10);
-        Shape leg4 = new Rectangle(350 + length - overhang - 20, 70 + width - overhang - 10, 20,10);
+        int bottomScaleFactor = (int)Portal.getScaleFactor(width, length, 200, 200);
+        Shape rect = new Rectangle(350, 70, length * bottomScaleFactor, width * bottomScaleFactor);
+        Shape leg1 = new Rectangle(350 + (overhang * bottomScaleFactor), 70 + (overhang * bottomScaleFactor), (int)(3.5 * bottomScaleFactor),(int)(1.5 * bottomScaleFactor));
+        Shape leg2 = new Rectangle((int)(350 + (length * bottomScaleFactor) - (overhang * bottomScaleFactor) - (3.5 * bottomScaleFactor)), 70 + (overhang * bottomScaleFactor), (int)(3.5 * bottomScaleFactor),(int)(1.5 * bottomScaleFactor));
+        Shape leg3 = new Rectangle((int)(350 + (overhang * bottomScaleFactor)), (int)(70 + (width * bottomScaleFactor) - (overhang * bottomScaleFactor) - (1.5 * bottomScaleFactor)), (int)(3.5 * bottomScaleFactor),(int)(1.5 * bottomScaleFactor));
+        Shape leg4 = new Rectangle((int)(350 + (length * bottomScaleFactor) - (overhang * bottomScaleFactor) - (3.5 * bottomScaleFactor)), (int)(70 + (width * bottomScaleFactor) - (overhang * bottomScaleFactor) - (1.5 * bottomScaleFactor)), (int)(3.5 * bottomScaleFactor),(int)(1.5 * bottomScaleFactor));
         
-        Shape slat1 = new Rectangle(350 +overhang, 70 + overhang, length - (overhang*2), 10);
-        Shape slat2 = new Rectangle(350 +overhang, 70 + overhang, 20, width - (overhang*2));
-        Shape slat3 = new Rectangle(350 + length - overhang - 20, 70 + overhang, 20, width - (overhang*2));
+        Shape slat1 = new Rectangle(350 +(overhang * bottomScaleFactor), 70 + (overhang * bottomScaleFactor), (length * bottomScaleFactor) - (overhang * bottomScaleFactor*2), (int)(1.5 * bottomScaleFactor));
+        Shape slat2 = new Rectangle(350 +(overhang * bottomScaleFactor), 70 + (overhang * bottomScaleFactor), (int)(3.5 * bottomScaleFactor), (width * bottomScaleFactor) - (overhang * bottomScaleFactor*2));
+        Shape slat3 = new Rectangle((int)(350 + (length * bottomScaleFactor) - (overhang * bottomScaleFactor) - (3.5 * bottomScaleFactor)), 70 + (overhang * bottomScaleFactor), (int)(3.5 * bottomScaleFactor), (width * bottomScaleFactor) - (overhang * bottomScaleFactor*2));
         
-        Shape tableTop = new Rectangle(600, 70, length, 4);
-        Shape sideLeg1 = new Rectangle(600+overhang, 74, 20, height - 4);
-        Shape sideLeg2 = new Rectangle(600+length-overhang -20, 74, 20, height - 4);
         
-        Shape legView = new Rectangle(150, 300, 20, height -4);
+        int sideScaleFactor = (int)Portal.getScaleFactor(height, length, 200, 200);
+        Shape tableTop = new Rectangle(600, 70, length * sideScaleFactor, (int)(0.8* sideScaleFactor));
+        Shape sideLeg1 = new Rectangle(600+(overhang * sideScaleFactor), (int)(70 + (0.8* sideScaleFactor)), (int)(3.5*sideScaleFactor), (int)((height * sideScaleFactor) - (0.8* sideScaleFactor)));
+        Shape sideLeg2 = new Rectangle((int)(600+(length * sideScaleFactor)-(overhang * sideScaleFactor) -(3.5* sideScaleFactor)), (int)(70 + (0.8* sideScaleFactor)), (int)(3.5*sideScaleFactor), (int)((height * sideScaleFactor) - (0.8* sideScaleFactor)));
+        Shape sideSlat = new Rectangle(600 + (overhang * sideScaleFactor), (int)(70 + (0.8* sideScaleFactor)), (length * sideScaleFactor) - ((overhang * sideScaleFactor)*2), (int)(3.5*sideScaleFactor));
         
-        Shape slatView1 = new Rectangle(350, 300, width-(overhang*2), 20);
-        Shape slatView2 = new Rectangle(350, 330, length - (overhang*2), 20);
+        int legScaleFactor = (int)Portal.getScaleFactor(height - 0.8, 3.5, 200, 200);
+        Shape legView = new Rectangle(150, 300, (int)(3.5 * legScaleFactor), (int)((height -0.8) * legScaleFactor));
+        
+        int slatScaleFactor1 = (int)Portal.getScaleFactor(3.5, width-(overhang*2), 200, 200);
+        Shape slatView1 = new Rectangle(350, 300, (width * slatScaleFactor1)-(overhang * slatScaleFactor1*2), (int)(3.5 * slatScaleFactor1));
+        int slatScaleFactor2 = (int)Portal.getScaleFactor(3.5, length - (overhang*2), 200, 200);
+        Shape slatView2 = new Rectangle(350, 330, (length * slatScaleFactor2) - (overhang*2), (int)(3.5 * slatScaleFactor2));
         
       
        
@@ -329,6 +337,7 @@ class TableJPanel extends JPanel {
         g2.draw(tableTop);
         g2.draw(sideLeg1);
         g2.draw(sideLeg2);
+        g2.draw(sideSlat);
         g2.draw(legView);
         g2.draw(slatView1);
         g2.draw(slatView2);
