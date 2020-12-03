@@ -211,4 +211,39 @@ public class Table {
 			return null;
 		}
 	}
+	public String getSwitchImage(ApplianceStore s) {
+		switch (s) {
+		case Ikea:
+			return null;
+			// https://www.ikea.com/us/en/p/tertial-work-lamp-with-led-bulb-dark-gray-00424985/
+		
+		case HomeDepot:
+			return "hdswitch.jpg";
+			// https://www.homedepot.com/pep/Globe-Electric-32-in-Multi-Joint-Metal-Clamp-Black-Desk-Lamp-56963/205139331?source=shoppingads&locale=en-US&mtc=Shopping-B-F_D27L-G-D27L-27_16_INTERIOR_LIGHTING-NA-NA-Feed-PLA-NA-NA-INTERIOR_LIGHTING_GeneralInteriorLighting&cm_mmc=Shopping-B-F_D27L-G-D27L-27_16_INTERIOR_LIGHTING-NA-NA-Feed-PLA-NA-NA-INTERIOR_LIGHTING_GeneralInteriorLighting-71700000038836110-58700004241533705-92700052328522866&gclid=Cj0KCQiAnb79BRDgARIsAOVbhRqDDrtYvvqCGkmI1p5lgi4x38vwS8Lk2p67W1iLeY2wAQ740RhXdJsaAulEEALw_wcB&gclsrc=aw.ds
+			
+		case Lowes:
+			return "lowesswitch.jpg" ; 
+			//https://www.lowes.com/pd/Globe-Electric-Architect-Lamp-31-5-in-Adjustable-Black-Clip-Desk-Lamp-with-Metal-Shade/1002981060
+		
+		default:
+			return null;
+		}
+	}
+	public String getTopImage(ApplianceStore s) {
+	switch (s) {
+	case HomeDepot:
+		return "hdtop.jpg";
+		// https://www.homedepot.com/p/Veranda-Melamine-White-Panel-Common-3-4-in-x-4-ft-x-8-ft-Actual-750-in-x-49-in-x-97-in-461877/100070209?source=shoppingads&locale=en-US&mtc=Shopping-VF-F_D21-G-D21-21_5_BOARDS-Generic-NA-Feed-LIA-NA-NA-BOARDS&cm_mmc=Shopping-VF-F_D21-G-D21-21_5_BOARDS-Generic-NA-Feed-LIA-NA-NA-BOARDS-71700000053671446-58700005130561935-92700045041683771&gclid=CjwKCAiA8Jf-BRB-EiwAWDtEGm5IRdf93R8YBibgutIgg5r3G6RaNEwPU38rLNYXQjbpVySBk4keyhoCvm8QAvD_BwE&gclsrc=aw.ds
+	
+	case Lowes:
+	return "lowestop.jpg";
+		// https://www.lowes.com/pd/Melamine-Board-Actual-0-75-in-x-49-in-x-8-08-ft/3605066
+		
+	case Ikea:
+		return null;
+	
+default:
+		return null;
+	}
+}
 }
