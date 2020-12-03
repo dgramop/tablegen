@@ -50,9 +50,30 @@ public class Table {
 				price += t.getPrice(woodandmore);
 			}
 		}
+		
+		//wood comes in 2inx4inx8foot, and it's not practical to lengthen the wood
+		int totalSegments=0;
+		double lengthLeft=8*12;
 		for (Leg l : tableLegs) {
-			price += l.getPrice(woodandmore);
+			lengthLeft-=l.getHeight();
+			if(lengthLeft<=0)
+			{
+				lengthLeft+=8*12;
+				totalSegments++;
+			}
 		}
+		
+		for (Slat l : tableSlats) {
+			lengthLeft-=l.getHeight();
+			if(lengthLeft<=0)
+			{
+				lengthLeft+=8*12;
+				totalSegments++;
+			}
+		}
+		
+		price+=woodandmore.getWoodPrice()*totalSegments + (lengthLeft!=8*12 ?  1 : 0 );
+		
 		switch (woodandmore) {
 		case HomeDepot:
 			price += 28.97;
