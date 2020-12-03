@@ -180,11 +180,11 @@ public class Portal {
                     	JLabel sideLabel = new JLabel("Side View");
                     	sideLabel.setBounds(670, 40, 100, 20);
                     	panel.add(sideLabel);
-                    	
+                    /*	
                     	JLabel priceLabel = new JLabel("Estimated Price:$"+ price);
                     	priceLabel.setBounds(850, 40, 200, 20);
                     	panel.add(priceLabel);
-                    	
+                   */ 	
                     	JLabel legLabel = new JLabel("Legs(4)");
                     	legLabel.setBounds(140, 270, 100, 20);
                     	panel.add(legLabel);
@@ -613,6 +613,17 @@ class TableJPanel extends JPanel {
            plugimg = ImageIO.read(new File(table.getReceptImage(table.getWoodStoreEnum())));
         } catch (IOException e) {
         }
+        
+        BufferedImage switchimg = null;
+		try {
+			switchimg = ImageIO.read(new File(table.getSwitchImage(table.getWoodStoreEnum())));
+		} catch (IOException e) {
+		}
+		BufferedImage topimg = null;
+		try {
+			topimg = ImageIO.read(new File(table.getTopImage(table.getWoodStoreEnum())));
+		} catch (IOException e) {
+		}
 
         g2.draw(rect);
         g2.draw(leg1);
@@ -630,9 +641,11 @@ class TableJPanel extends JPanel {
         g2.draw(legView);
         g2.draw(slatView1);
         g2.draw(slatView2);
-        g2.drawImage(lampimg, 100, 450, 100, 100, null);
-        g2.drawImage(legimg, 250, 450, 100, 100, null);
-        g2.drawImage(plugimg, 400, 450, 100, 100, null);
+        g2.drawImage(lampimg, 250, 550, 100, 100, null);
+        g2.drawImage(legimg, 400, 550, 100, 100, null);
+        g2.drawImage(plugimg, 550, 550, 100, 100, null);
+        g2.drawImage(switchimg, 700, 550, 100, 100, null);
+		g2.drawImage(topimg, 850, 550, 100, 100, null);
         
     }
     
