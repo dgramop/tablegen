@@ -38,8 +38,9 @@ public class Prices {
 		case HomeDepot:
 			url="https://www.homedepot.com/p/Veranda-Melamine-White-Panel-Common-3-4-in-x-4-ft-x-8-ft-Actual-750-in-x-49-in-x-97-in-461877/100070209";
 			break;
-		/*case Lowes:
-			url=""*/
+		case Ikea:
+			url="https://www.ikea.com/us/en/p/tertial-work-lamp-with-led-bulb-dark-gray-00424985/";
+			break;
 		}
 		return Jsoup.connect(url).get();
 	}
@@ -57,7 +58,9 @@ public class Prices {
 			}
 			break;
 		case Ikea:
-			break;
+			Element dollars=getDocument(store,null).select(".js-price-package.range-revamp-pip-price-package .range-revamp-price__integer").get(0);
+			Element cents=getDocument(store,null).select(".js-price-package.range-revamp-pip-price-package .range-revamp-price__decimals").get(0);
+			return Double.parseDouble(dollars.text()+cents.text());
 		case Lowes:
 			break;
 		default:
@@ -69,7 +72,8 @@ public class Prices {
 	public static void main(String args[])
 	{
 		try {
-			getPrice(ApplianceStore.HomeDepot);
+			//getPrice(ApplianceStore.HomeDepot);
+			System.out.println(getPrice(ApplianceStore.Ikea));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
