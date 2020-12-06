@@ -17,7 +17,7 @@ import org.jsoup.select.Elements;
 
 
 public class Prices {
-	
+	//
 // curl 'https://www.homedepot.com/product-information/model' \
 //  -H 'authority: www.homedepot.com' \
 //  -H 'accept: */*' \
