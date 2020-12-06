@@ -42,7 +42,7 @@ public class Prices {
 	
 	public static String executePost(String targetURL, String urlParameters) {
 		  HttpURLConnection connection = null;
-
+		 
 		  try {
 		    //Create connection
 		    URL url = new URL(targetURL);
@@ -175,8 +175,8 @@ public class Prices {
 	public static void main(String[] args)
 	{
 
-		System.out.println("Hi");
-		//System.out.println(executePost("https://www.homedepot.com/product-information/model", null));      
+		//System.out.println("Hi");
+		System.out.println(executePost("https://www.homedepot.com/product-information/model", null));      
 		    
 		
 		/*try {
