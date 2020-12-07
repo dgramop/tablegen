@@ -42,19 +42,20 @@ public class Prices {
 			BufferedReader in = new BufferedReader(new InputStreamReader(
 					con.getInputStream()));
 			String inputLine;
-			StringBuffer response = new StringBuffer();
+			StringBuffer response = new StringBuffer(); //we have to use a string buffer because the response body comes piecemeal
 
 			while ((inputLine = in.readLine()) != null) {
 				response.append(inputLine);
 			}
-			in.close();			
+			in.close(); //have the response body, now we need to parse it
 			try
 			{
-				System.out.println(response.toString());
-				return new JSONObject(response.toString()).getJSONObject("productDetails").getJSONObject(n1+"").getJSONObject("price").getDouble("itemPrice");
+				System.out.println(response.toString());//for debug because Lowes is not stable yet
+				return new JSONObject(response.toString()).getJSONObject("productDetails").getJSONObject(n1+"").getJSONObject("price").getDouble("itemPrice"); // walk through the JSON schema until we hit the itemPrice value for Lowes
 			}
 			catch(org.json.JSONException e)
 			{
+				//a JSON key is likely missing here. API might have changed
 				System.out.println(e);
 				return 0.0;
 			}
@@ -77,10 +78,10 @@ public class Prices {
 		  /* SOURCE: modified from stackoverflow.com and others */
 		  try {
 		    //Create connection
-		    URL url = new URL("https://www.homedepot.com/product-information/model");
+		    URL url = new URL("https://www.homedepot.com/product-information/model"); //we have to send a POST request
 		    connection = (HttpURLConnection) url.openConnection();
 		    connection.setRequestMethod("POST");
-		    connection.setRequestProperty("authority", 
+		    connection.setRequestProperty("authority",   				// I had katie copy over all the headers from my reverse engineered request because Home Depot also had a little bit of anti-scraping technology
 		        "www.homedepot.com");
 		    connection.setRequestProperty("accept", 
 			        "*/*");
@@ -93,7 +94,7 @@ public class Prices {
 		    connection.setRequestProperty("x-api-cookies", 
 			        "{\"x-user-id\":\"dbb69e11-75fb-f0d1-a940-9926445ce257\"}");
 		    connection.setRequestProperty("user-agent", 
-			        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.67 Safari/537.36");
+			        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.67 Safari/537.36"); //the request body is JSON
 		    connection.setRequestProperty("content-type", 
 			        "application/json");
 		    connection.setRequestProperty("origin", 
@@ -119,7 +120,7 @@ public class Prices {
 
 		    //Send request
 		    DataOutputStream wr = new DataOutputStream (
-		        connection.getOutputStream());
+		        connection.getOutputStream()); //the request body is JSON
 		    wr.writeBytes("{\"operationName\":\"clientOnlyProduct\",\"variables\":{\"itemId\":\""+itemID+"\",\"storeId\":\"4601\",\"zipCode\":\"22030\"},\"query\":\"query clientOnlyProduct($storeId: String, $zipCode: String, $itemId: String!) {\\n  product(itemId: $itemId) {\\n    itemId\\n    dataSources\\n    info {\\n      recommendationFlags {\\n        visualNavigation\\n        __typename\\n      }\\n      replacementOMSID\\n      hasSubscription\\n      minimumOrderQuantity\\n      projectCalculatorEligible\\n      productDepartment\\n      classNumber\\n      subClassNumber\\n      calculatorType\\n      isLiveGoodsProduct\\n      protectionPlanSku\\n      hasServiceAddOns\\n      consultationType\\n      __typename\\n    }\\n    availabilityType {\\n      discontinued\\n      type\\n      status\\n      buyable\\n      __typename\\n    }\\n    fulfillment(storeId: $storeId, zipCode: $zipCode) {\\n      backordered\\n      fulfillmentOptions {\\n        type\\n        fulfillable\\n        services {\\n          type\\n          locations {\\n            isAnchor\\n            inventory {\\n              isLimitedQuantity\\n              isOutOfStock\\n              isInStock\\n              quantity\\n              isUnavailable\\n              maxAllowedBopisQty\\n              minAllowedBopisQty\\n              __typename\\n            }\\n            type\\n            storeName\\n            locationId\\n            curbsidePickupFlag\\n            isBuyInStoreCheckNearBy\\n            distance\\n            state\\n            storePhone\\n            __typename\\n          }\\n          deliveryTimeline\\n          deliveryDates {\\n            startDate\\n            endDate\\n            __typename\\n          }\\n          deliveryCharge\\n          dynamicEta {\\n            hours\\n            minutes\\n            __typename\\n          }\\n          hasFreeShipping\\n          freeDeliveryThreshold\\n          totalCharge\\n          __typename\\n        }\\n        __typename\\n      }\\n      anchorStoreStatus\\n      anchorStoreStatusType\\n      backorderedShipDate\\n      bossExcludedShipStates\\n      excludedShipStates\\n      seasonStatusEligible\\n      onlineStoreStatus\\n      onlineStoreStatusType\\n      inStoreAssemblyEligible\\n      __typename\\n    }\\n    seoDescription\\n    identifiers {\\n      brandName\\n      productLabel\\n      productType\\n      storeSkuNumber\\n      isSuperSku\\n      parentId\\n      sampleId\\n      modelNumber\\n      __typename\\n    }\\n    media {\\n      images {\\n        url\\n        sizes\\n        type\\n        subType\\n        __typename\\n      }\\n      __typename\\n    }\\n    pricing(storeId: $storeId) {\\n      value\\n      alternatePriceDisplay\\n      unitOfMeasure\\n      alternate {\\n        bulk {\\n          thresholdQuantity\\n          value\\n          __typename\\n        }\\n        unit {\\n          caseUnitOfMeasure\\n          unitsPerCase\\n          value\\n          __typename\\n        }\\n        __typename\\n      }\\n      original\\n      promotion {\\n        experienceTag\\n        subExperienceTag\\n        anchorItemList\\n        itemList\\n        reward {\\n          tiers {\\n            minPurchaseAmount\\n            minPurchaseQuantity\\n            rewardPercent\\n            rewardAmountPerOrder\\n            rewardAmountPerItem\\n            __typename\\n          }\\n          __typename\\n        }\\n        __typename\\n      }\\n      __typename\\n    }\\n    reviews {\\n      ratingsReviews {\\n        averageRating\\n        totalReviews\\n        __typename\\n      }\\n      __typename\\n    }\\n    badges(storeId: $storeId) {\\n      color\\n      creativeImageUrl\\n      endDate\\n      label\\n      message\\n      name\\n      timerDuration\\n      __typename\\n    }\\n    installServices {\\n      scheduleAMeasure\\n      __typename\\n    }\\n    specificationGroup {\\n      specTitle\\n      specifications {\\n        specName\\n        specValue\\n        __typename\\n      }\\n      __typename\\n    }\\n    subscription {\\n      defaultfrequency\\n      discountPercentage\\n      subscriptionEnabled\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n\"}' \n");
 		    wr.close();
 
@@ -161,8 +162,8 @@ public class Prices {
 		return Double.parseDouble(dollars.text()+cents.text());
 	}
 	
-	public static double getPrice(ApplianceStore store,Object product) throws IOException
-	{
+	public static double getPrice(ApplianceStore store,Object product) throws IOException 
+	{ //TODO: implement when we have a stable LowesGet, otherwise there's no point
 		if(product instanceof Table)
 		{
 			switch(store)
@@ -197,7 +198,8 @@ public class Prices {
 
 	public static void main(String[] args)
 	{
-		//System.out.println(HomeDepotPost("100070209"));
+		System.out.println("Most of our methods can support different Item IDs, and for Lowes store IDs");
+		System.out.println("Get the price from Ikea for the Lamp:");
 		try{
 			System.out.println(getIkeaPrice("tertial-work-lamp-with-led-bulb-dark-gray-00424985"));
 		}
@@ -205,8 +207,10 @@ public class Prices {
 			e.printStackTrace();
 		}
 		
+		System.out.println("Get the price from Home Depot for the tabletop");
 		System.out.println(HomeDepotPost("100070209"));
 		
+		System.out.println("Get the price from Lowes for some two-by-fours (sometimes fails)");
 		try {
 			System.out.println(LowesGet("1001134500","1803"));
 		} catch (IOException e) {
