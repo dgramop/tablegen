@@ -240,6 +240,141 @@ public class Portal {
         
         frame.setVisible(true);
         frame.setContentPane(panel);
+        
+        b.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+
+				if (heightField.getText().matches("[0-9]+") && widthField.getText().matches("[0-9]+")  //checks if input is valid before proceeding
+						&& lengthField.getText().matches("[0-9]+") && overhangField.getText().matches("[0-9]+")
+						&& lampField.getText().matches("[0-9]+") && receptacleField.getText().matches("[0-9]+")
+						&& (store1Field.getText().equals("HomeDepot") || store1Field.getText().equals("Lowes"))
+						&& (store2Field.getText().equals("HomeDepot") || store2Field.getText().equals("Lowes")
+								|| store2Field.getText().equals("Ikea"))) {
+					int h = Integer.parseInt(heightField.getText());  //converts height, width, length, overhang, number of lamps, and number of receptacle values to int
+					int w = Integer.parseInt(widthField.getText());   //stores all these variables
+					int l = Integer.parseInt(lengthField.getText());
+					int o = Integer.parseInt(overhangField.getText());
+					int la = Integer.parseInt(lampField.getText());
+					int r = Integer.parseInt(receptacleField.getText());
+
+					ApplianceStore woodstore;
+					ApplianceStore lampstore;
+
+					if (store1Field.getText().equals("HomeDepot")) {  //sets woodstore variable using ApplianceStore enum
+						woodstore = ApplianceStore.HomeDepot;
+					} else {
+						woodstore = ApplianceStore.Lowes;
+					}
+
+					if (store2Field.getText().equals("HomeDepot")) {  //sets lampstore variable using ApplianceStore enum
+						lampstore = ApplianceStore.HomeDepot;
+					} else if (store2Field.getText().equals("Ikea")) {
+						lampstore = ApplianceStore.Ikea;
+					} else {
+						lampstore = ApplianceStore.Lowes;
+					}
+
+					if (h > 0 && w > 0 && l > 0 && o > 0) {  //proceeds if all values are positive and logical
+						height = h;       //sets height, width, length, overhang, lamps, and receptacle values to collected h,w,l,o,la,r values respectively
+						width = w;
+						length = l;
+						overhang = o;
+						lamps = la;
+						receptacles = r;
+						errorMessage.setText("success");
+
+						scaleFactor = (int) getScaleFactor(height, width, 200, 200);
+						table = TableMaker.makeTable(height, width, length, overhang, lamps, receptacles);  //creates table object using these values
+
+						double price = table.calculatePrice(woodstore, lampstore);
+						Instructions i = new Instructions(table);
+						String instructions = (i.writeInstructions());
+
+						tablePanel.setTable(table);
+						tablePanel.setLength(length * scaleFactor);
+						tablePanel.setWidth(width * scaleFactor);
+						tablePanel.setHeight(height * scaleFactor);
+						tablePanel.setOverhang(overhang * scaleFactor);
+
+						JLabel topLabel = new JLabel("Top View");
+						topLabel.setBounds(130, 40, 100, 20);
+						tablePanel.add(topLabel);
+
+						JLabel bottomLabel = new JLabel("Bottom View");
+						bottomLabel.setBounds(410, 40, 100, 20);
+						tablePanel.add(bottomLabel);
+
+						JLabel sideLabel = new JLabel("Side View");
+						sideLabel.setBounds(670, 40, 100, 20);
+						tablePanel.add(sideLabel);
+
+						JLabel priceLabel = new JLabel("Estimated Price:$" + price);
+						priceLabel.setBounds(950, 40, 200, 20);
+						tablePanel.add(priceLabel);
+
+						JLabel legLabel = new JLabel("Legs(4)");
+						legLabel.setBounds(140, 270, 100, 20);
+						tablePanel.add(legLabel);
+
+						JLabel slatLabel = new JLabel("Slats");
+						slatLabel.setBounds(360, 270, 100, 20);
+						tablePanel.add(slatLabel);
+
+						JLabel slat1Number = new JLabel("(2)");
+						slat1Number.setBounds(310, 300, 20, 20);
+						tablePanel.add(slat1Number);
+
+						JLabel slat2Number = new JLabel("(1)");
+						slat2Number.setBounds(310, 330, 20, 20);
+						tablePanel.add(slat2Number);
+
+						JTextArea instructLabel = new JTextArea(instructions);
+						instructLabel.setBounds(600, 270, 500, 250);
+						tablePanel.add(instructLabel);
+
+						tablePanel.setLayout(null);
+
+						frame.setContentPane(tablePanel);
+						frame.validate();
+
+					} else {
+						errorMessage.setText("Please enter valid dimensions.");
+					}
+				} else {
+					if (heightField.getText().charAt(0) == '-' || widthField.getText().charAt(0) == '-'
+							|| lengthField.getText().charAt(0) == '-' || overhangField.getText().charAt(0) == '-') {
+						errorMessage.setText("Please enter valid dimensions");
+					} else
+						errorMessage.setText("Please enter correct store options");
+				}
+			}
+		});
+
+		panel.add(heightLabel);
+		panel.add(heightField);
+		panel.add(widthLabel);
+		panel.add(widthField);
+		panel.add(lengthLabel);
+		panel.add(lengthField);
+		panel.add(overhangLabel);
+		panel.add(overhangField);
+		panel.add(lampLabel);
+		panel.add(lampField);
+		panel.add(receptacleLabel);
+		panel.add(receptacleField);
+		panel.add(store1Label);
+		panel.add(store1Field);
+		panel.add(store1options);
+		panel.add(store2Label);
+		panel.add(store2Field);
+		panel.add(store2options);
+		panel.add(b);
+		panel.add(errorMessage);
+		panel.setLayout(null);
+
+		frame.setVisible(true);
+		frame.setContentPane(panel);
 	}
 
 }
