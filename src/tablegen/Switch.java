@@ -36,6 +36,9 @@ public class Switch implements TableComponent{
 		this.circuitBreaker = circuitBreaker;
 	}
 
+	/**
+	 * @return price of object
+	 */
 	public double getPrice(ApplianceStore store) {
 		double price = 0.0;
 		switch(store) {

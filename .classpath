@@ -6,9 +6,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/dgramop/Documents/Projects/tablegen/json-20201115.jar"/>
-	<classpathentry kind="lib" path="/Users/dgramop/Documents/Projects/tablegen/jsoup-1.13.1.jar"/>
-	<classpathentry kind="lib" path="/Users/dgramop/Documents/Projects/tablegen/jsoup-1.13.1-sources.jar"/>
-	<classpathentry kind="lib" path="/Users/dgramop/Documents/Projects/tablegen/jsoup-1.13.1-javadoc.jar"/>
+	<classpathentry kind="lib" path="/Users/katierahn/eclipse-workspace/jsoup-1.13.1.jar"/>
+	<classpathentry kind="lib" path="/Users/katierahn/Downloads/json-20201115.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

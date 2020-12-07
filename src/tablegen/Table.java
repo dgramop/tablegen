@@ -58,7 +58,7 @@ public class Table {
 		}
 
 		// wood comes in 2inx4inx8foot, and it's not practical to lengthen the wood
-		//Calculating total number of wood segments to purchase for slats and legs
+		// Calculating total number of wood segments to purchase for slats and legs
 		int totalSegments = 0;
 		double lengthLeft = 8 * 12;
 		for (Leg l : tableLegs) {
@@ -79,7 +79,7 @@ public class Table {
 
 		price += woodandmore.getWoodPrice() * totalSegments + (lengthLeft != 8 * 12 ? 1 : 0);
 
-		//price of the table top for both stores
+		// price of the table top for both stores
 		switch (woodandmore) {
 		case HomeDepot:
 			price += 28.97;
@@ -123,10 +123,11 @@ public class Table {
 	public int getNumLamps() {
 		return numLamps;
 	}
-/**
- * 
- * @return string of WoodStore
- */
+
+	/**
+	 * 
+	 * @return string of WoodStore
+	 */
 	public String getWoodStore() {
 		if (woodStore == ApplianceStore.HomeDepot) {
 			return "HomeDepot";
@@ -142,17 +143,19 @@ public class Table {
 	public ApplianceStore getWoodStoreEnum() {
 		return woodStore;
 	}
-/**
- * 
- * @return Enum value for LampStore
- */
+
+	/**
+	 * 
+	 * @return Enum value for LampStore
+	 */
 	public ApplianceStore getLampStoreEnum() {
 		return lampStore;
 	}
-/**
- * 
- * @return string value for LampStore
- */
+
+	/**
+	 * 
+	 * @return string value for LampStore
+	 */
 	public String getLampStore() {
 		if (lampStore == ApplianceStore.HomeDepot) {
 			return "HomeDepot";
@@ -176,10 +179,11 @@ public class Table {
 	public void setTableSlats(Slat[] tableSlats) {
 		this.tableSlats = tableSlats;
 	}
-/**
- * 
- * @return String of picture file name
- */
+
+	/**
+	 * 
+	 * @return String of picture file name
+	 */
 	public String getLampImage(ApplianceStore s) {
 		switch (s) {
 		case Ikea:
@@ -198,10 +202,11 @@ public class Table {
 			return null;
 		}
 	}
-/**
- * 
- * @return String of picture file name
- */
+
+	/**
+	 * 
+	 * @return String of picture file name
+	 */
 	public String getLegImage(ApplianceStore s) {
 		switch (s) {
 		case Ikea:

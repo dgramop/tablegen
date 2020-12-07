@@ -55,31 +55,37 @@ public class Portal {
         heightLabel.setBounds(100,50,180,20);
         JTextField heightField = new JTextField();
         heightField.setBounds(300, 50, 150, 20);
+      //creation of label and text field for table height
         
         JLabel widthLabel = new JLabel("Enter Table Width(inches):");
         widthLabel.setBounds(100,100,180,20);
         JTextField widthField = new JTextField();
         widthField.setBounds(300, 100, 150, 20);
+      //creation of label and text field for table width
         
         JLabel lengthLabel = new JLabel("Enter Table Length(inches):");
         lengthLabel.setBounds(100,150,180,20);
         JTextField lengthField = new JTextField();
         lengthField.setBounds(300, 150, 150, 20);
+      //creation of label and text field for table length
         
         JLabel overhangLabel = new JLabel("Enter Overhang Value(inches):");
         overhangLabel.setBounds(100,200,180,20);
         JTextField overhangField = new JTextField();
         overhangField.setBounds(300, 200, 150, 20);
+      //creation of label and text field for table overhang value
         
         JLabel lampLabel = new JLabel("Enter Number of Lamps(0-5):");
         lampLabel.setBounds(500,50,180,20);
         JTextField lampField = new JTextField();
         lampField.setBounds(720, 50, 150, 20);
+      //creation of label and text field for number of table lamps
         
         JLabel receptacleLabel = new JLabel("Enter Number of Receptacles(0-3):");
         receptacleLabel.setBounds(500,100,200,20);
         JTextField receptacleField = new JTextField();
         receptacleField.setBounds(720, 100, 150, 20);
+      //creation of label and text field for number of receptacles
         
         JLabel store1Label = new JLabel("Enter Store for Wood/Electric:");
         store1Label.setBounds(500,150,200,20);
@@ -87,6 +93,7 @@ public class Portal {
         store1options.setBounds(500,170,200,20);
         JTextField store1Field = new JTextField();
         store1Field.setBounds(720, 150, 150, 20);
+      //creation of label and text field for store for wood and electronic
         
         JLabel store2Label = new JLabel("Enter Store for Lamps:");
         store2Label.setBounds(500,200,200,20);
@@ -94,6 +101,7 @@ public class Portal {
         store2options.setBounds(500,220,200,20);
         JTextField store2Field = new JTextField();
         store2Field.setBounds(720, 200, 150, 20);
+      //creation of label and text field for store for lamps
         
         JButton b = new JButton("Submit");
         b.setBounds(450, 300, 100, 20);
@@ -102,7 +110,7 @@ public class Portal {
         b.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){  
             	//check if boxes are all filled
-            	
+            	//makes sure height, length, width, and overhang values are all numbers
             	if(heightField.getText().matches("[0-9]+") &&
             	widthField.getText().matches("[0-9]+") &&
             	lengthField.getText().matches("[0-9]+") &&
@@ -111,13 +119,14 @@ public class Portal {
             	receptacleField.getText().matches("[0-9]+")&&
             	(store1Field.getText().equals("HomeDepot")||store1Field.getText().equals("Lowes"))&&
             		(store2Field.getText().equals("HomeDepot")||store2Field.getText().equals("Lowes")||store2Field.getText().equals("Ikea"))){
-            	    int h = Integer.parseInt(heightField.getText());
+            		//makes sure store values are correct options
+            		int h = Integer.parseInt(heightField.getText());
                     int w = Integer.parseInt(widthField.getText());
                     int l = Integer.parseInt(lengthField.getText());
                     int o = Integer.parseInt(overhangField.getText());
                     int la = Integer.parseInt(lampField.getText());
                     int r = Integer.parseInt(receptacleField.getText());
-                    
+                  //converts height, width, length, overhang, number of lamps, and number of receptacle values to int
                 	ApplianceStore woodstore;
                     ApplianceStore lampstore;
                     
@@ -146,6 +155,8 @@ public class Portal {
                    
                     
                     if(h>0 && w>0 && l>0 && o>0) {
+                    	//proceeds if all values are positive and logical
+                    	//sets height, width, length, overhang, lamps, and receptacle values to collected h,w,l,o,la,r values respectively
                     	height = h;
                     	width = w;
                     	length = l;
@@ -157,9 +168,10 @@ public class Portal {
                     	
                     	//scaleFactor = (int)getScaleFactor(height, width, 200, 200);
                     	table = TableMaker.makeTable(height, width, length, overhang, lamps, receptacles);
-
+                    	//creates table object using these values
                     double price = 	table.calculatePrice(woodstore, lampstore);
-                    	Instructions i = new Instructions(table);
+                  //uses calculatePrice method from table to calculate the estimated price using the woodstore and lampstore	
+                    Instructions i = new Instructions(table);
                     	String instructions = (i.writeInstructions());
                     	
 
@@ -565,11 +577,11 @@ class TableJPanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        
+        //creates scale factor for top view
         int topScaleFactor = (int)Portal.getScaleFactor(width, length, 200, 200);
         Shape topView = new Rectangle(70, 70, length * topScaleFactor, width * topScaleFactor);
-        
-        
+      //creates rectangle that shows top view
+      //creates scale factor for bottom view
         int bottomScaleFactor = (int)Portal.getScaleFactor(width, length, 200, 200);
         Shape rect = new Rectangle(350, 70, length * bottomScaleFactor, width * bottomScaleFactor);
         Shape leg1 = new Rectangle(350 + (overhang * bottomScaleFactor), 70 + (overhang * bottomScaleFactor), (int)(3.5 * bottomScaleFactor),(int)(1.5 * bottomScaleFactor));
@@ -581,7 +593,7 @@ class TableJPanel extends JPanel {
         Shape slat2 = new Rectangle(350 +(overhang * bottomScaleFactor), 70 + (overhang * bottomScaleFactor), (int)(3.5 * bottomScaleFactor), (width * bottomScaleFactor) - (overhang * bottomScaleFactor*2));
         Shape slat3 = new Rectangle((int)(350 + (length * bottomScaleFactor) - (overhang * bottomScaleFactor) - (3.5 * bottomScaleFactor)), 70 + (overhang * bottomScaleFactor), (int)(3.5 * bottomScaleFactor), (width * bottomScaleFactor) - (overhang * bottomScaleFactor*2));
         
-        
+        //scale factor for side view
         int sideScaleFactor = (int)Portal.getScaleFactor(height, length, 200, 200);
         Shape tableTop = new Rectangle(600, 70, length * sideScaleFactor, (int)(0.8* sideScaleFactor));
         Shape sideLeg1 = new Rectangle(600+(overhang * sideScaleFactor), (int)(70 + (0.8* sideScaleFactor)), (int)(3.5*sideScaleFactor), (int)((height * sideScaleFactor) - (0.8* sideScaleFactor)));
@@ -597,28 +609,31 @@ class TableJPanel extends JPanel {
         Shape slatView2 = new Rectangle(350, 330, (length * slatScaleFactor2) - (overhang*2), (int)(3.5 * slatScaleFactor2));
         
       
-       
+      //image for lamp
         BufferedImage lampimg = null;
         try {
            lampimg = ImageIO.read(new File(table.getLampImage(table.getLampStoreEnum())));
         } catch (IOException e) {
         }
+      //image for leg
         BufferedImage legimg = null;
         try {
            legimg = ImageIO.read(new File(table.getLegImage(table.getWoodStoreEnum())));
         } catch (IOException e) {
         }
+      //image for receptacle
         BufferedImage plugimg = null;
         try {
            plugimg = ImageIO.read(new File(table.getReceptImage(table.getWoodStoreEnum())));
         } catch (IOException e) {
         }
-        
+      //image for switch
         BufferedImage switchimg = null;
 		try {
 			switchimg = ImageIO.read(new File(table.getSwitchImage(table.getWoodStoreEnum())));
 		} catch (IOException e) {
 		}
+		//image for table top
 		BufferedImage topimg = null;
 		try {
 			topimg = ImageIO.read(new File(table.getTopImage(table.getWoodStoreEnum())));
