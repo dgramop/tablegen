@@ -58,6 +58,7 @@ public class Table {
 		}
 
 		// wood comes in 2inx4inx8foot, and it's not practical to lengthen the wood
+		//Calculating total number of wood segments to purchase for slats and legs
 		int totalSegments = 0;
 		double lengthLeft = 8 * 12;
 		for (Leg l : tableLegs) {
@@ -78,6 +79,7 @@ public class Table {
 
 		price += woodandmore.getWoodPrice() * totalSegments + (lengthLeft != 8 * 12 ? 1 : 0);
 
+		//price of the table top for both stores
 		switch (woodandmore) {
 		case HomeDepot:
 			price += 28.97;
