@@ -1,5 +1,7 @@
 package tablegen;
 
+import java.io.IOException;
+
 public class Receptacle implements TableComponent{
 	private double x;
 	private double y;
@@ -29,10 +31,14 @@ public class Receptacle implements TableComponent{
 		this.y = y;
 	}
 
+	/**
+	 * @return price of object
+	 */
 	public double getPrice(ApplianceStore store) {
 		double price = 0.0;
 		switch(store) {
 		case HomeDepot:
+			//Prices.getPrice(ApplianceStore.HomeDepot, this);
 			price = 1.04;
 			//https://www.homedepot.com/p/Leviton-15-Amp-Tamper-Resistant-Duplex-Outlet-White-10-Pack-M22-T5320-WMP/100684043
 			price+=0.21;

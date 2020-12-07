@@ -7,6 +7,12 @@ private double height;
 public static final double width = 1.5;
 public static final double length = 3.5;
 
+/**
+ * Leg constructor
+ * @param x x position of the leg
+ * @param y y position of the leg
+ * @param h height of the leg
+ */
 public Leg(double x, double y, double h)
 {
 	this.x = x;

@@ -34,6 +34,12 @@ public class Table {
 		this.tableSlats = tableSlats;
 	}
 
+	/**
+	 * 
+	 * @param woodandmore store used for wood and electric
+	 * @param lamp        store used for lamp
+	 * @return estimated price
+	 */
 	public double calculatePrice(ApplianceStore woodandmore, ApplianceStore lamp) {
 		woodStore = woodandmore;
 		lampStore = lamp;
@@ -46,34 +52,32 @@ public class Table {
 				if (t instanceof Receptacle) {
 					numReceptacles++;
 				}
-				
+
 				price += t.getPrice(woodandmore);
 			}
 		}
-		
-		//wood comes in 2inx4inx8foot, and it's not practical to lengthen the wood
-		int totalSegments=0;
-		double lengthLeft=8*12;
+
+		// wood comes in 2inx4inx8foot, and it's not practical to lengthen the wood
+		int totalSegments = 0;
+		double lengthLeft = 8 * 12;
 		for (Leg l : tableLegs) {
-			lengthLeft-=l.getHeight();
-			if(lengthLeft<=0)
-			{
-				lengthLeft+=8*12;
+			lengthLeft -= l.getHeight();
+			if (lengthLeft <= 0) {
+				lengthLeft += 8 * 12;
 				totalSegments++;
 			}
 		}
-		
+
 		for (Slat l : tableSlats) {
-			lengthLeft-=l.getHeight();
-			if(lengthLeft<=0)
-			{
-				lengthLeft+=8*12;
+			lengthLeft -= l.getHeight();
+			if (lengthLeft <= 0) {
+				lengthLeft += 8 * 12;
 				totalSegments++;
 			}
 		}
-		
-		price+=woodandmore.getWoodPrice()*totalSegments + (lengthLeft!=8*12 ?  1 : 0 );
-		
+
+		price += woodandmore.getWoodPrice() * totalSegments + (lengthLeft != 8 * 12 ? 1 : 0);
+
 		switch (woodandmore) {
 		case HomeDepot:
 			price += 28.97;
@@ -113,11 +117,14 @@ public class Table {
 	public int getNumReceptacles() {
 		return numReceptacles;
 	}
-	
+
 	public int getNumLamps() {
 		return numLamps;
 	}
-
+/**
+ * 
+ * @return string of WoodStore
+ */
 	public String getWoodStore() {
 		if (woodStore == ApplianceStore.HomeDepot) {
 			return "HomeDepot";
@@ -125,14 +132,25 @@ public class Table {
 			return "Lowes";
 		}
 	}
-	
+
+	/**
+	 * 
+	 * @return Enum value of WoodStore
+	 */
 	public ApplianceStore getWoodStoreEnum() {
 		return woodStore;
 	}
+/**
+ * 
+ * @return Enum value for LampStore
+ */
 	public ApplianceStore getLampStoreEnum() {
 		return lampStore;
 	}
-
+/**
+ * 
+ * @return string value for LampStore
+ */
 	public String getLampStore() {
 		if (lampStore == ApplianceStore.HomeDepot) {
 			return "HomeDepot";
@@ -156,94 +174,116 @@ public class Table {
 	public void setTableSlats(Slat[] tableSlats) {
 		this.tableSlats = tableSlats;
 	}
-
+/**
+ * 
+ * @return String of picture file name
+ */
 	public String getLampImage(ApplianceStore s) {
 		switch (s) {
 		case Ikea:
 			return "ikealamp.jpg";
-			// https://www.ikea.com/us/en/p/tertial-work-lamp-with-led-bulb-dark-gray-00424985/
-		
+		// https://www.ikea.com/us/en/p/tertial-work-lamp-with-led-bulb-dark-gray-00424985/
+
 		case HomeDepot:
 			return "homedepot.jpg";
-			// https://www.homedepot.com/pep/Globe-Electric-32-in-Multi-Joint-Metal-Clamp-Black-Desk-Lamp-56963/205139331?source=shoppingads&locale=en-US&mtc=Shopping-B-F_D27L-G-D27L-27_16_INTERIOR_LIGHTING-NA-NA-Feed-PLA-NA-NA-INTERIOR_LIGHTING_GeneralInteriorLighting&cm_mmc=Shopping-B-F_D27L-G-D27L-27_16_INTERIOR_LIGHTING-NA-NA-Feed-PLA-NA-NA-INTERIOR_LIGHTING_GeneralInteriorLighting-71700000038836110-58700004241533705-92700052328522866&gclid=Cj0KCQiAnb79BRDgARIsAOVbhRqDDrtYvvqCGkmI1p5lgi4x38vwS8Lk2p67W1iLeY2wAQ740RhXdJsaAulEEALw_wcB&gclsrc=aw.ds
-			
+		// https://www.homedepot.com/pep/Globe-Electric-32-in-Multi-Joint-Metal-Clamp-Black-Desk-Lamp-56963/205139331?source=shoppingads&locale=en-US&mtc=Shopping-B-F_D27L-G-D27L-27_16_INTERIOR_LIGHTING-NA-NA-Feed-PLA-NA-NA-INTERIOR_LIGHTING_GeneralInteriorLighting&cm_mmc=Shopping-B-F_D27L-G-D27L-27_16_INTERIOR_LIGHTING-NA-NA-Feed-PLA-NA-NA-INTERIOR_LIGHTING_GeneralInteriorLighting-71700000038836110-58700004241533705-92700052328522866&gclid=Cj0KCQiAnb79BRDgARIsAOVbhRqDDrtYvvqCGkmI1p5lgi4x38vwS8Lk2p67W1iLeY2wAQ740RhXdJsaAulEEALw_wcB&gclsrc=aw.ds
+
 		case Lowes:
-			return "loweslamp.jpg" ; 
-			//https://www.lowes.com/pd/Globe-Electric-Architect-Lamp-31-5-in-Adjustable-Black-Clip-Desk-Lamp-with-Metal-Shade/1002981060
-		
+			return "loweslamp.jpg";
+		// https://www.lowes.com/pd/Globe-Electric-Architect-Lamp-31-5-in-Adjustable-Black-Clip-Desk-Lamp-with-Metal-Shade/1002981060
+
 		default:
 			return null;
 		}
 	}
+/**
+ * 
+ * @return String of picture file name
+ */
 	public String getLegImage(ApplianceStore s) {
 		switch (s) {
 		case Ikea:
 			return null;
-			// https://www.ikea.com/us/en/p/tertial-work-lamp-with-led-bulb-dark-gray-00424985/
-		
+		// https://www.ikea.com/us/en/p/tertial-work-lamp-with-led-bulb-dark-gray-00424985/
+
 		case HomeDepot:
 			return "homedepotleg.jpg";
-			// https://www.homedepot.com/pep/Globe-Electric-32-in-Multi-Joint-Metal-Clamp-Black-Desk-Lamp-56963/205139331?source=shoppingads&locale=en-US&mtc=Shopping-B-F_D27L-G-D27L-27_16_INTERIOR_LIGHTING-NA-NA-Feed-PLA-NA-NA-INTERIOR_LIGHTING_GeneralInteriorLighting&cm_mmc=Shopping-B-F_D27L-G-D27L-27_16_INTERIOR_LIGHTING-NA-NA-Feed-PLA-NA-NA-INTERIOR_LIGHTING_GeneralInteriorLighting-71700000038836110-58700004241533705-92700052328522866&gclid=Cj0KCQiAnb79BRDgARIsAOVbhRqDDrtYvvqCGkmI1p5lgi4x38vwS8Lk2p67W1iLeY2wAQ740RhXdJsaAulEEALw_wcB&gclsrc=aw.ds
-			
+		// https://www.homedepot.com/pep/Globe-Electric-32-in-Multi-Joint-Metal-Clamp-Black-Desk-Lamp-56963/205139331?source=shoppingads&locale=en-US&mtc=Shopping-B-F_D27L-G-D27L-27_16_INTERIOR_LIGHTING-NA-NA-Feed-PLA-NA-NA-INTERIOR_LIGHTING_GeneralInteriorLighting&cm_mmc=Shopping-B-F_D27L-G-D27L-27_16_INTERIOR_LIGHTING-NA-NA-Feed-PLA-NA-NA-INTERIOR_LIGHTING_GeneralInteriorLighting-71700000038836110-58700004241533705-92700052328522866&gclid=Cj0KCQiAnb79BRDgARIsAOVbhRqDDrtYvvqCGkmI1p5lgi4x38vwS8Lk2p67W1iLeY2wAQ740RhXdJsaAulEEALw_wcB&gclsrc=aw.ds
+
 		case Lowes:
-			return "lowesleg.jpg" ; 
-			//https://www.lowes.com/pd/Globe-Electric-Architect-Lamp-31-5-in-Adjustable-Black-Clip-Desk-Lamp-with-Metal-Shade/1002981060
-		
+			return "lowesleg.jpg";
+		// https://www.lowes.com/pd/Globe-Electric-Architect-Lamp-31-5-in-Adjustable-Black-Clip-Desk-Lamp-with-Metal-Shade/1002981060
+
 		default:
 			return null;
 		}
 	}
+
+	/**
+	 * 
+	 * @return String of picture file name
+	 */
 	public String getReceptImage(ApplianceStore s) {
 		switch (s) {
 		case Ikea:
 			return null;
-			// https://www.ikea.com/us/en/p/tertial-work-lamp-with-led-bulb-dark-gray-00424985/
-		
+		// https://www.ikea.com/us/en/p/tertial-work-lamp-with-led-bulb-dark-gray-00424985/
+
 		case HomeDepot:
 			return "homedepotplug.jpg";
-			// https://www.homedepot.com/pep/Globe-Electric-32-in-Multi-Joint-Metal-Clamp-Black-Desk-Lamp-56963/205139331?source=shoppingads&locale=en-US&mtc=Shopping-B-F_D27L-G-D27L-27_16_INTERIOR_LIGHTING-NA-NA-Feed-PLA-NA-NA-INTERIOR_LIGHTING_GeneralInteriorLighting&cm_mmc=Shopping-B-F_D27L-G-D27L-27_16_INTERIOR_LIGHTING-NA-NA-Feed-PLA-NA-NA-INTERIOR_LIGHTING_GeneralInteriorLighting-71700000038836110-58700004241533705-92700052328522866&gclid=Cj0KCQiAnb79BRDgARIsAOVbhRqDDrtYvvqCGkmI1p5lgi4x38vwS8Lk2p67W1iLeY2wAQ740RhXdJsaAulEEALw_wcB&gclsrc=aw.ds
-			
+		// https://www.homedepot.com/pep/Globe-Electric-32-in-Multi-Joint-Metal-Clamp-Black-Desk-Lamp-56963/205139331?source=shoppingads&locale=en-US&mtc=Shopping-B-F_D27L-G-D27L-27_16_INTERIOR_LIGHTING-NA-NA-Feed-PLA-NA-NA-INTERIOR_LIGHTING_GeneralInteriorLighting&cm_mmc=Shopping-B-F_D27L-G-D27L-27_16_INTERIOR_LIGHTING-NA-NA-Feed-PLA-NA-NA-INTERIOR_LIGHTING_GeneralInteriorLighting-71700000038836110-58700004241533705-92700052328522866&gclid=Cj0KCQiAnb79BRDgARIsAOVbhRqDDrtYvvqCGkmI1p5lgi4x38vwS8Lk2p67W1iLeY2wAQ740RhXdJsaAulEEALw_wcB&gclsrc=aw.ds
+
 		case Lowes:
-			return "lowesplug.jpg" ; 
-			//https://www.lowes.com/pd/Globe-Electric-Architect-Lamp-31-5-in-Adjustable-Black-Clip-Desk-Lamp-with-Metal-Shade/1002981060
-		
+			return "lowesplug.jpg";
+		// https://www.lowes.com/pd/Globe-Electric-Architect-Lamp-31-5-in-Adjustable-Black-Clip-Desk-Lamp-with-Metal-Shade/1002981060
+
 		default:
 			return null;
 		}
 	}
+
+	/**
+	 * 
+	 * @return String of picture file name
+	 */
 	public String getSwitchImage(ApplianceStore s) {
 		switch (s) {
 		case Ikea:
 			return null;
-			// https://www.ikea.com/us/en/p/tertial-work-lamp-with-led-bulb-dark-gray-00424985/
-		
+		// https://www.ikea.com/us/en/p/tertial-work-lamp-with-led-bulb-dark-gray-00424985/
+
 		case HomeDepot:
 			return "hdswitch.jpg";
-			// https://www.homedepot.com/pep/Globe-Electric-32-in-Multi-Joint-Metal-Clamp-Black-Desk-Lamp-56963/205139331?source=shoppingads&locale=en-US&mtc=Shopping-B-F_D27L-G-D27L-27_16_INTERIOR_LIGHTING-NA-NA-Feed-PLA-NA-NA-INTERIOR_LIGHTING_GeneralInteriorLighting&cm_mmc=Shopping-B-F_D27L-G-D27L-27_16_INTERIOR_LIGHTING-NA-NA-Feed-PLA-NA-NA-INTERIOR_LIGHTING_GeneralInteriorLighting-71700000038836110-58700004241533705-92700052328522866&gclid=Cj0KCQiAnb79BRDgARIsAOVbhRqDDrtYvvqCGkmI1p5lgi4x38vwS8Lk2p67W1iLeY2wAQ740RhXdJsaAulEEALw_wcB&gclsrc=aw.ds
-			
+		// https://www.homedepot.com/pep/Globe-Electric-32-in-Multi-Joint-Metal-Clamp-Black-Desk-Lamp-56963/205139331?source=shoppingads&locale=en-US&mtc=Shopping-B-F_D27L-G-D27L-27_16_INTERIOR_LIGHTING-NA-NA-Feed-PLA-NA-NA-INTERIOR_LIGHTING_GeneralInteriorLighting&cm_mmc=Shopping-B-F_D27L-G-D27L-27_16_INTERIOR_LIGHTING-NA-NA-Feed-PLA-NA-NA-INTERIOR_LIGHTING_GeneralInteriorLighting-71700000038836110-58700004241533705-92700052328522866&gclid=Cj0KCQiAnb79BRDgARIsAOVbhRqDDrtYvvqCGkmI1p5lgi4x38vwS8Lk2p67W1iLeY2wAQ740RhXdJsaAulEEALw_wcB&gclsrc=aw.ds
+
 		case Lowes:
-			return "lowesswitch.jpg" ; 
-			//https://www.lowes.com/pd/Globe-Electric-Architect-Lamp-31-5-in-Adjustable-Black-Clip-Desk-Lamp-with-Metal-Shade/1002981060
-		
+			return "lowesswitch.jpg";
+		// https://www.lowes.com/pd/Globe-Electric-Architect-Lamp-31-5-in-Adjustable-Black-Clip-Desk-Lamp-with-Metal-Shade/1002981060
+
 		default:
 			return null;
 		}
 	}
+
+	/**
+	 * 
+	 * @return String of picture file name
+	 */
 	public String getTopImage(ApplianceStore s) {
-	switch (s) {
-	case HomeDepot:
-		return "hdtop.jpg";
+		switch (s) {
+		case HomeDepot:
+			return "hdtop.jpg";
 		// https://www.homedepot.com/p/Veranda-Melamine-White-Panel-Common-3-4-in-x-4-ft-x-8-ft-Actual-750-in-x-49-in-x-97-in-461877/100070209?source=shoppingads&locale=en-US&mtc=Shopping-VF-F_D21-G-D21-21_5_BOARDS-Generic-NA-Feed-LIA-NA-NA-BOARDS&cm_mmc=Shopping-VF-F_D21-G-D21-21_5_BOARDS-Generic-NA-Feed-LIA-NA-NA-BOARDS-71700000053671446-58700005130561935-92700045041683771&gclid=CjwKCAiA8Jf-BRB-EiwAWDtEGm5IRdf93R8YBibgutIgg5r3G6RaNEwPU38rLNYXQjbpVySBk4keyhoCvm8QAvD_BwE&gclsrc=aw.ds
-	
-	case Lowes:
-	return "lowestop.jpg";
+
+		case Lowes:
+			return "lowestop.jpg";
 		// https://www.lowes.com/pd/Melamine-Board-Actual-0-75-in-x-49-in-x-8-08-ft/3605066
-		
-	case Ikea:
-		return null;
-	
-default:
-		return null;
+
+		case Ikea:
+			return null;
+
+		default:
+			return null;
+		}
 	}
-}
 }

@@ -152,26 +152,24 @@ public class Prices {
 		return Double.parseDouble(dollars.text()+cents.text());
 	}
 	
-	private static double getPrice(ApplianceStore store,Object product) throws IOException
+	public static double getPrice(ApplianceStore store,Object product) throws IOException
 	{
-		switch(store)
-		{
-		case HomeDepot:
-			//return HomeDepot
-		case Ikea:
-			
-		case Lowes:
-			//GET https://www.lowes.com/pd/1000405513/productdetail/1803/Guest
-		default:
-			break;
-		}
+		
 		return 0.0d;
 	}
 
 	public static void main(String[] args)
 	{
 
+		try{
+			System.out.println(getIkeaPrice("tertial-work-lamp-with-led-bulb-dark-gray-00424985"));
+		}
+		catch (IOException e){
+			e.printStackTrace();
+		}
+		
 		System.out.println(HomeDepotPost("100070209"));
+		
 		try {
 			System.out.println(LowesGet("1000405513","1803"));
 		} catch (IOException e) {

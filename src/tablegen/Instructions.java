@@ -2,11 +2,20 @@ package tablegen;
 
 public class Instructions {
 private Table tableObject;
+
+/**
+ * Constructor for the instructions
+ * @param t table object to generate instructions for
+ */
 Instructions(Table t)
 {
 	tableObject = t;
 }
 
+/**
+ * 
+ * @return string of instructions
+ */
 public String writeInstructions() {
 	String instruct = "";
 	instruct+="Obtain 2x4 from "+tableObject.getWoodStore()+"\n"+
