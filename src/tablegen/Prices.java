@@ -23,7 +23,7 @@ public class Prices {
 
 	/**
 	 * Returns the Lowes price. 
-	 * @param n1 - appears to be the item ID (1000405513)
+	 * @param n1 - appears to be the item ID (1001134500)
 	 * @param n2 - appears to be the store ID (1803)
 	 * @return
 	 * @throws IOException
@@ -48,8 +48,17 @@ public class Prices {
 				response.append(inputLine);
 			}
 			in.close();			
+			try
+			{
+				System.out.println(response.toString());
+				return new JSONObject(response.toString()).getJSONObject("productDetails").getJSONObject(n1+"").getJSONObject("price").getDouble("itemPrice");
+			}
+			catch(org.json.JSONException e)
+			{
+				System.out.println(e);
+				return 0.0;
+			}
 			
-			return new JSONObject(response.toString()).getJSONObject("productDetails").getJSONObject(n1+"").getJSONObject("price").getJSONObject("analyticsData").getDouble("retailPrice");
 		} else {
 			System.out.println("GET request not worked");
 			return 0.0;
@@ -154,13 +163,41 @@ public class Prices {
 	
 	public static double getPrice(ApplianceStore store,Object product) throws IOException
 	{
-		
+		if(product instanceof Table)
+		{
+			switch(store)
+			{
+			case HomeDepot:
+				return HomeDepotPost("100070209");
+			case Ikea:
+				return 0.0;
+			case Lowes:
+				//GET https://www.lowes.com/pd/1000405513/productdetail/1803/Guest
+			default:
+				break;
+			}
+		}
+		if(product instanceof Slat || product instanceof Leg)
+		{
+			switch(store)
+			{
+			case HomeDepot:
+				return HomeDepotPost("100070209");
+			case Ikea:
+				return 0.0;
+			case Lowes:
+				return LowesGet("1001134500","1803"); //an extra 2 feet of wood but not out-of-stack
+				//GET https://www.lowes.com/pd/1000405513/productdetail/1803/Guest
+			default:
+				break;
+			}
+		}		
 		return 0.0d;
 	}
 
 	public static void main(String[] args)
 	{
-
+		//System.out.println(HomeDepotPost("100070209"));
 		try{
 			System.out.println(getIkeaPrice("tertial-work-lamp-with-led-bulb-dark-gray-00424985"));
 		}
@@ -171,7 +208,7 @@ public class Prices {
 		System.out.println(HomeDepotPost("100070209"));
 		
 		try {
-			System.out.println(LowesGet("1000405513","1803"));
+			System.out.println(LowesGet("1001134500","1803"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
