@@ -7,6 +7,7 @@ public class Lamp implements TableComponent {
 	private double width;
 	// lamp type enum
 
+	
 	public Lamp(double x, double y, double w) {
 		this.x = x;
 		this.y = y;
@@ -39,7 +40,9 @@ public class Lamp implements TableComponent {
 	}
 	
 	
-
+/**
+ * @return price for object
+ */
 	public double getPrice(ApplianceStore store) {
 		double price = 0;
 		switch (store) {

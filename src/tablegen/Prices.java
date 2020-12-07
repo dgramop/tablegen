@@ -191,15 +191,22 @@ public class Prices {
 			default:
 				break;
 			}
-		}
-		
+		}		
 		return 0.0d;
 	}
 
 	public static void main(String[] args)
 	{
-
 		//System.out.println(HomeDepotPost("100070209"));
+		try{
+			System.out.println(getIkeaPrice("tertial-work-lamp-with-led-bulb-dark-gray-00424985"));
+		}
+		catch (IOException e){
+			e.printStackTrace();
+		}
+		
+		System.out.println(HomeDepotPost("100070209"));
+		
 		try {
 			System.out.println(LowesGet("1001134500","1803"));
 		} catch (IOException e) {
