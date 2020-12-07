@@ -287,45 +287,45 @@ public class Portal {
 						scaleFactor = (int) getScaleFactor(height, width, 200, 200);
 						table = TableMaker.makeTable(height, width, length, overhang, lamps, receptacles);  //creates table object using these values
 
-						double price = table.calculatePrice(woodstore, lampstore);
+						double price = table.calculatePrice(woodstore, lampstore); //uses calculatePrice method from table to calculate the estimated price using the woodstore and lampstore
 						Instructions i = new Instructions(table);
-						String instructions = (i.writeInstructions());
+						String instructions = (i.writeInstructions());  //creates instructions
 
-						tablePanel.setTable(table);
+						tablePanel.setTable(table);  //sets table, length, width, height, and overhang values of tablePanel
 						tablePanel.setLength(length * scaleFactor);
 						tablePanel.setWidth(width * scaleFactor);
 						tablePanel.setHeight(height * scaleFactor);
 						tablePanel.setOverhang(overhang * scaleFactor);
 
-						JLabel topLabel = new JLabel("Top View");
+						JLabel topLabel = new JLabel("Top View");    //label for Top View
 						topLabel.setBounds(130, 40, 100, 20);
 						tablePanel.add(topLabel);
 
-						JLabel bottomLabel = new JLabel("Bottom View");
+						JLabel bottomLabel = new JLabel("Bottom View");    //label for Bottom View
 						bottomLabel.setBounds(410, 40, 100, 20);
 						tablePanel.add(bottomLabel);
 
-						JLabel sideLabel = new JLabel("Side View");
+						JLabel sideLabel = new JLabel("Side View");   //label for Side View
 						sideLabel.setBounds(670, 40, 100, 20);
 						tablePanel.add(sideLabel);
 
-						JLabel priceLabel = new JLabel("Estimated Price:$" + price);
+						JLabel priceLabel = new JLabel("Estimated Price:$" + price);   //label for Price
 						priceLabel.setBounds(950, 40, 200, 20);
 						tablePanel.add(priceLabel);
 
-						JLabel legLabel = new JLabel("Legs(4)");
+						JLabel legLabel = new JLabel("Legs(4)");   //label for Leg View
 						legLabel.setBounds(140, 270, 100, 20);
 						tablePanel.add(legLabel);
 
-						JLabel slatLabel = new JLabel("Slats");
+						JLabel slatLabel = new JLabel("Slats");    //label for Slat View
 						slatLabel.setBounds(360, 270, 100, 20);
 						tablePanel.add(slatLabel);
 
-						JLabel slat1Number = new JLabel("(2)");
+						JLabel slat1Number = new JLabel("(2)");   //label for number of slat type 1
 						slat1Number.setBounds(310, 300, 20, 20);
 						tablePanel.add(slat1Number);
 
-						JLabel slat2Number = new JLabel("(1)");
+						JLabel slat2Number = new JLabel("(1)");   //label for number of slat type 2
 						slat2Number.setBounds(310, 330, 20, 20);
 						tablePanel.add(slat2Number);
 
